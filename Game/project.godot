@@ -14,3 +14,9 @@ config/name="FGJ2025"
 run/main_scene="uid://ogav0nohko7m"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://Scenes/GlobalScenes/SceneManager.tscn"
+InputManager="*res://Scenes/GlobalScenes/InputManager.tscn"
+AudioManager="*res://Scenes/GlobalScenes/AudioManager.tscn"
