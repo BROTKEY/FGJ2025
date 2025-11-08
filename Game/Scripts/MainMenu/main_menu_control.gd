@@ -19,13 +19,11 @@ func _exit_tree():
 
 
 func _on_start_pressed():
-	# TODO: actually load some scenes here
-	var left = load("res://scenes/samples/main_menu.tscn").instantiate()
-	var right = load("res://scenes/samples/platformer_sample.tscn").instantiate()
-	var new_scene = SplitScreen.create_split_screen(left, right)
-	self.hide()
-	get_tree().root.add_child(new_scene)
-	get_tree().current_scene = new_scene
+	# TODO: load random scenes here
+	SceneManager.show_split_screen_from_file(
+		"res://Scenes/Microgames/FryMeUp.tscn",
+		"res://Scenes/Microgames/FryMeUp.tscn"
+	)
 
 
 func _on_exit_pressed():

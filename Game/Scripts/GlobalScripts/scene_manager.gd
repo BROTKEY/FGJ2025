@@ -1,26 +1,51 @@
 extends Node
 
+# Preloaded scenes
+const _main_menu_scene = preload("res://Scenes/MainMenu.tscn")
 
-var _main_menu: Node:
-	get(): return get_node("/Game/MainMenu")
 
-var _current_scene_node: Node:
-	get(): return get_node("/Game/CurrentScene")
+func get_current_scene() -> Node:
+	return get_tree().current_screen
 
-func set_active_scene(scene: Node):
-	_set_only_child(_current_scene_node, scene)
-	get_tree().current_scene = scene
 
-func get_active_scene() -> Node:
-	var scene_node: Node = _current_scene_node
-	if scene_node.get_child_count() == 0:
-		return null
-	return scene_node.get_children()[0]
+## Remove the current scene from the tree and replace it with another scene
+func set_current_scene(scene: Node):
+	var tree = get_tree()
+	var old_scene = tree.current_scene
+	tree.root.add_child(scene)
+	tree.current_scene = scene
+	tree.root.remove_child(old_scene)
 
-func get_main_menu():
-	pass
 
+func show_main_menu() -> MainMenu:
+	var main_menu = _main_menu_scene.instantiate()
+	set_current_scene(main_menu)
+	return main_menu
+
+
+func show_split_screen(left_scene: Node, right_scene: Node) -> SplitScreen:
+	var split_screen = SplitScreen.create_split_screen(left_scene, right_scene)
+	set_current_scene(split_screen)
+	return split_screen
+
+
+func show_split_screen_packed(left_scene: PackedScene, right_scene: PackedScene) -> SplitScreen:
+	return show_split_screen(
+		left_scene.instantiate(),
+		right_scene.instantiate()
+	)
+
+
+func show_split_screen_from_file(left_scene: String, right_scene: String) -> SplitScreen:
+	return show_split_screen(
+		load(left_scene).instantiate(),
+		load(right_scene).instantiate()
+	)
+
+
+## Remove all childs from a node and set another node as its only child
 static func _set_only_child(parent: Node, new_child: Node):
 	for old_child in parent.get_children():
 		old_child.queue_free()
-	parent.add_child(new_child)
+	if new_child != null:
+		parent.add_child(new_child)
