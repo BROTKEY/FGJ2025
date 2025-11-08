@@ -21,6 +21,10 @@ SceneManager="*res://Scenes/GlobalScenes/SceneManager.tscn"
 InputManager="*res://Scenes/GlobalScenes/InputManager.tscn"
 AudioManager="*res://Scenes/GlobalScenes/AudioManager.tscn"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/wii_board/plugin.cfg")
+
 [input]
 
 Space={
