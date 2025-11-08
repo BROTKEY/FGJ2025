@@ -1,8 +1,86 @@
-[gd_scene format=3 uid="uid://docoos4g7sj8e"]
+[gd_scene load_steps=10 format=3 uid="uid://docoos4g7sj8e"]
+
+[ext_resource type="Script" uid="uid://doo4t5l6gjomu" path="res://Scripts/Microgames/Jump/jump.gd" id="1_05107"]
+[ext_resource type="Texture2D" uid="uid://d4kpgqogvpwfo" path="res://Assets/Microgames/Jump/toppng.com-man-stick-figure-stick-man-running-862x980.png" id="1_scqx8"]
+[ext_resource type="Texture2D" uid="uid://5ejpp65lqnxm" path="res://Assets/Microgames/Jump/png-transparent-hurdling-track-field-hurdle-athletics-track-miscellaneous-angle-furniture-thumbnail.png" id="2_jrqoe"]
+[ext_resource type="Script" uid="uid://blsrtvhtdej0r" path="res://Scripts/Microgames/Jump/person.gd" id="4_yclec"]
+[ext_resource type="Texture2D" uid="uid://bdl6rcym1haxm" path="res://Assets/Microgames/Jump/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png" id="5_yclec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05107"]
+size = Vector2(360, 310.0002)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vltm5"]
+size = Vector2(387.5, 415)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_05107"]
+normal = Vector2(0, -10)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sqkrd"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, 1, 0)
+spread = 180.0
+flatness = 0.5
+initial_velocity_min = 2000.0
+initial_velocity_max = 10000.0
+angular_velocity_min = 99.999985
+angular_velocity_max = 719.99994
+gravity = Vector3(0, 980, 0)
+scale_min = 0.02
+scale_max = 0.049999997
 
 [node name="Jump" type="Node2D"]
+script = ExtResource("1_05107")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.6117647, 0.23921569, 0.32941177, 1)
+color = Color(0.9512375, 0.73560774, 0.7692792, 1)
+
+[node name="Hurdle" type="Area2D" parent="."]
+position = Vector2(1848, 1053)
+
+[node name="PngTransparentHurdlingTrackFieldHurdleAthleticsTrackMiscellaneousAngleFurnitureThumbnail" type="Sprite2D" parent="Hurdle"]
+position = Vector2(-621, -464)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_jrqoe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurdle"]
+position = Vector2(-621, -464.00006)
+scale = Vector2(0.4, 0.4)
+shape = SubResource("RectangleShape2D_05107")
+debug_color = Color(9.62615e-07, 0.61149555, 0.6304613, 0.41960785)
+
+[node name="Person" type="RigidBody2D" parent="."]
+script = ExtResource("4_yclec")
+
+[node name="Toppng_comManStickFigureStickManRunning862x980" type="Sprite2D" parent="Person"]
+position = Vector2(556, 573)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_scqx8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Person"]
+position = Vector2(553.5, 563)
+scale = Vector2(0.4, 0.4)
+shape = SubResource("RectangleShape2D_vltm5")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(564, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_05107")
+
+[node name="Particels" type="GPUParticles2D" parent="."]
+position = Vector2(564, 588)
+scale = Vector2(0.02, 0.02)
+emitting = false
+amount = 32
+texture = ExtResource("5_yclec")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sqkrd")
+
+[connection signal="body_entered" from="Hurdle" to="Person" method="_on_hurdle_body_entered"]

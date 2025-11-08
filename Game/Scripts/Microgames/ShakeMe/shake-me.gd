@@ -1,13 +1,13 @@
-extends Node
+extends BaseMicrogame
 
 var last_state = 0
 var shakes = 0
 var goal_shakes = 10
 var won = false
-@export var difficulty = 1
+@export var difficulty = 1.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var shake_state = InputManager.get_soldering_iron_shake_state()
 	print(shakes)
 	
@@ -28,7 +28,17 @@ func _process(delta: float) -> void:
 		$Bottle.position = Vector2(564, 324)
 		
 		
-	if shakes >= goal_shakes and last_state >=1 and !won:
+	if shakes >= difficulty*goal_shakes and last_state >=1 and !won:
 		$Particels.emitting = true
 		won = true
 	pass
+
+
+func get_difficulty() -> float:
+	return difficulty
+
+func set_difficulty(value: float) -> void:
+	difficulty = value
+
+func get_won() -> bool:
+	return won
