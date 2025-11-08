@@ -1,0 +1,3 @@
+[submodule "IronOS"]
+	path = IronOS
+	url = https://github.com/MiningXL/IronOS
