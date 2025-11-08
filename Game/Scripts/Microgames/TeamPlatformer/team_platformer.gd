@@ -1,4 +1,4 @@
-extends Node2D
+extends BaseMicrogame
 
 
 var last_known_volume = 0
@@ -26,9 +26,19 @@ func _ready() -> void:
 	$SliderHost.position.x = slider_original_pos + (((bar_total_length-(bar_deadzone * 2))/127) * InputManager.last_known_volume_value) + bar_deadzone - slider_thiccness/2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if $Ball.position.x > get_viewport().size.x:
 		won = true
 		$Particels.position.y = $Ball.position.y
 		$Particels.emitting = true
 	pass
+
+
+#func get_difficulty() -> float:
+	#return difficulty
+#
+#func set_difficulty(value: float) -> void:
+	#difficulty = value
+
+func get_won() -> bool:
+	return won

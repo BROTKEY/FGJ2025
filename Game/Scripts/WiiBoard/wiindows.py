@@ -9,7 +9,7 @@ LOG = logging.getLogger(__name__)
 handler = logging.StreamHandler() # or RotatingFileHandler
 handler.setFormatter(logging.Formatter('[%(asctime)s][%(name)s][%(levelname)s] %(message)s'))
 LOG.addHandler(handler)
-LOG.setLevel(logging.INFO) # or DEBUG
+LOG.setLevel(logging.ERROR) # or DEBUG
 
 def discover_devices(**filters) -> list[hid.HidDevice]:
 	"""Discover devices. Filters can be applied using keyword=value, e.g. discover_devices(product_name='Fancy Product')"""

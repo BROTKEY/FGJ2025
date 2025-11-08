@@ -56,7 +56,7 @@ logger = logging.getLogger(__name__)
 handler = logging.StreamHandler() # or RotatingFileHandler
 handler.setFormatter(logging.Formatter('[%(asctime)s][%(name)s][%(levelname)s] %(message)s'))
 logger.addHandler(handler)
-logger.setLevel(logging.INFO) # or DEBUG
+logger.setLevel(logging.WARNING) # or DEBUG
 
 b2i = lambda b: int.from_bytes(b, "big")
 # b2i = lambda b: int.from_bytes(b, 'little')

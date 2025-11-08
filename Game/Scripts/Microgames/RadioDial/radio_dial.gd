@@ -1,4 +1,4 @@
-extends Node2D
+extends BaseMicrogame
 
 var deadzone = 3
 var bar_deadzone  = 50
@@ -44,6 +44,12 @@ func _ready() -> void:
 	slider_thiccness  = $Slider.size.x
 	$Slider.position.x = slider_original_pos + (((bar_total_length-(bar_deadzone * 2))/127) * InputManager.last_known_volume_value) + bar_deadzone - slider_thiccness/2
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+#func get_difficulty() -> float:
+	#return difficulty
+#
+#func set_difficulty(value: float) -> void:
+	#difficulty = value
+
+func get_won() -> bool:
+	return won

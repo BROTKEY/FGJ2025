@@ -1,5 +1,5 @@
 class_name BaseMicrogame
-extends Node
+extends Node2D
 
 
 func get_won() -> bool:
