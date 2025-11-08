@@ -6,11 +6,6 @@ var won = false
 @export var cooking_time_s = 2
 @export var difficulty = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:     
 	if InputManager.get_soldering_iron_temprature() >= 180:
@@ -25,6 +20,3 @@ func _process(delta: float) -> void:
 		$Chicken.texture = cooked_chicken
 		$Particels.emitting = true 
 		won = true
-
-func has_won() -> bool:
-	return won
