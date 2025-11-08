@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		$Bottle.position = Vector2(564, 324)
 		
 		
-	if shakes >= goal_shakes and last_state >=1 and !won:
+	if shakes >= difficulty*goal_shakes and last_state >=1 and !won:
 		$Particels.emitting = true
 		won = true
 	pass

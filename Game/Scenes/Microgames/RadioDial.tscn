@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwqcau78csr7q"]
+
+[ext_resource type="Script" uid="uid://co6bva1a0tbwh" path="res://Scripts/Microgames/RadioDial/radio_dial.gd" id="1_vc6sy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vc6sy"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="RadioDial" type="Node2D"]
+script = ExtResource("1_vc6sy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.9836616, 0.9478324, 1, 1)
+
+[node name="Bar" type="ColorRect" parent="."]
+offset_left = 189.0
+offset_top = 328.0
+offset_right = 989.0
+offset_bottom = 348.0
+color = Color(0.59475005, 0.59475, 0.59475, 1)
+
+[node name="Slider" type="ColorRect" parent="."]
+offset_left = 283.0
+offset_top = 299.0
+offset_right = 303.0
+offset_bottom = 379.0
+color = Color(1, 0.5739952, 0.5120701, 1)
+
+[node name="BulbOn" type="ColorRect" parent="."]
+offset_left = 945.0
+offset_top = 130.0
+offset_right = 985.0
+offset_bottom = 170.0
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 912.0
+offset_top = 98.0
+offset_right = 1023.0
+offset_bottom = 121.0
+text = "I'm a lightbulb"
+label_settings = SubResource("LabelSettings_vc6sy")
+
+[node name="BulbOff" type="ColorRect" parent="."]
+offset_left = 945.0
+offset_top = 130.0
+offset_right = 985.0
+offset_bottom = 170.0
+color = Color(0, 0, 0, 1)
