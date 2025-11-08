@@ -53,3 +53,9 @@ func _ready() -> void:
 
 func get_won() -> bool:
 	return won
+
+func get_game_name() -> String:
+	return 'RadioDial'
+
+func get_input_device() -> InputDevice:
+	return InputDevice.MIDI_KEYBOARD
