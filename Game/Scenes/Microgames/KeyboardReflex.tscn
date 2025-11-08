@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr8tt3c5657os"]
+
+[ext_resource type="Script" uid="uid://cxf5xh8megdro" path="res://Scripts/Microgames/KeyboardReflex/keyboard_reflex.gd" id="1_difiv"]
+
+[node name="KeyboardReflex" type="Node2D"]
+script = ExtResource("1_difiv")
