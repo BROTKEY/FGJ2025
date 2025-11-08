@@ -7,13 +7,14 @@ var won = false
 @export var difficulty = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:     
-	if InputManager.get_soldering_iron_temprature() >= 180:
-		if !won:
-			cooking_percentage += delta / cooking_time_s
-		$Fire.show()
-	else:
-		$Fire.hide()
+func _process(delta: float) -> void:
+	if Time.get_ticks_msec() % 100: # Every 100ms
+		if InputManager.get_soldering_iron_temprature() >= 180:
+			if !won:
+				cooking_percentage += delta / cooking_time_s
+			$Fire.show()
+		else:
+			$Fire.hide()
 		
 		
 	if cooking_percentage >= 1 and !won:
