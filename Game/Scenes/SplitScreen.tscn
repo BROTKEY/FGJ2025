@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://daxbl8ban2gpi"]
+[gd_scene load_steps=5 format=3 uid="uid://daxbl8ban2gpi"]
 
 [ext_resource type="Script" uid="uid://c3iar42cjtxye" path="res://Scripts/SplitScreen/split_screen.gd" id="1_w2mmi"]
 [ext_resource type="Script" uid="uid://dxbxc0g07e6j6" path="res://Scripts/Ui/viewport_texture_rect.gd" id="2_06u6v"]
-[ext_resource type="PackedScene" uid="uid://dub85mvueq8id" path="res://Scenes/Microgames/FryMeUp.tscn" id="3_iwmsr"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iwmsr"]
 viewport_path = NodePath("Viewports/ViewportL")
@@ -65,8 +64,6 @@ metadata/_custom_type_script = "uid://dxbxc0g07e6j6"
 [node name="ViewportL" type="SubViewport" parent="Viewports"]
 disable_3d = true
 size = Vector2i(1000, 1000)
-
-[node name="FryMeUp" parent="Viewports/ViewportL" instance=ExtResource("3_iwmsr")]
 
 [node name="ViewportR" type="SubViewport" parent="Viewports"]
 disable_3d = true
