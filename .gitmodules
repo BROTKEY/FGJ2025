@@ -1,3 +1,6 @@
 [submodule "IronOS"]
 	path = IronOS
 	url = https://github.com/MiningXL/IronOS
+[submodule "pynecil"]
+	path = pynecil
+	url = https://github.com/MiningXL/pynecil
