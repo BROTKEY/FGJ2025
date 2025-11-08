@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _input(event) -> void:
 	if event.as_text() == 'Space':
-		print(event)
 		wii_jump.emit()
 		
 	if event is InputEventMIDI:

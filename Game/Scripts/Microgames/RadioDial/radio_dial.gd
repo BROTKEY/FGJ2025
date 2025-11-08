@@ -4,12 +4,12 @@ var deadzone = 3
 var bar_deadzone  = 50
 
 var target = 0
+var won = false
+
 var last_known_volume = 0
 var bar_total_length = 0
 var slider_original_pos = 0
 var slider_thiccness = 0
-var won = false
-
 
 func volume_changed(value)-> void:
 	print(value)
