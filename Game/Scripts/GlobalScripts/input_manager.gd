@@ -36,3 +36,9 @@ func get_wii_jump() -> float:
 	if Input.is_action_pressed('Space'):
 		return 1
 	return 0
+
+func get_wii_center_of_mass() -> Vector2:
+	var board = $WiiboardController
+	if board != null and board.board_connected:
+		return board.get_center_of_mass()
+	return Vector2.ZERO
