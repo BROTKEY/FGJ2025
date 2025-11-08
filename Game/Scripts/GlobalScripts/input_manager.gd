@@ -9,6 +9,11 @@ var last_known_volume_value = 0
 func _ready() -> void:
 	OS.open_midi_inputs()
 	print(OS.get_connected_midi_inputs())
+	var wiiboard = $WiiboardController
+	if wiiboard == null:
+		print("No WiiboardController!")
+	else:
+		wiiboard.jump.connect(_on_wiiboard_jump)
 
 func _input(event) -> void:
 	if event.as_text() == 'Space':
@@ -19,6 +24,9 @@ func _input(event) -> void:
 		if event.controller_number == 7:
 			last_known_volume_value = event.controller_value
 			volume_change.emit(event.controller_value)
+
+func _on_wiiboard_jump() -> void:
+	wii_jump.emit()
 
 func get_soldering_iron_temprature() -> int:
 	if Input.is_action_pressed('Space'):
@@ -33,6 +41,7 @@ func get_soldering_iron_shake_state() -> float:
 	return 0
 
 func get_wii_jump() -> float:
+	# TODO: remove
 	if Input.is_action_pressed('Space'):
 		return 1
 	return 0

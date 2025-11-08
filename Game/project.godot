@@ -21,8 +21,6 @@ SceneManager="*res://Scenes/GlobalScenes/SceneManager.tscn"
 InputManager="*res://Scenes/GlobalScenes/InputManager.tscn"
 AudioManager="*res://Scenes/GlobalScenes/AudioManager.tscn"
 
-[editor_plugins]
-
 [input]
 
 Space={

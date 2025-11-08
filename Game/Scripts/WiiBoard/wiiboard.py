@@ -1,4 +1,3 @@
-#! /usr/bin/env python
 """ Wii Fit Balance Board (WBB) in python
 
 usage: wiiboard.py [-d] [address] 2> wiiboard.log > wiiboard.txt
@@ -16,7 +15,7 @@ import os
 
 WIN = os.name == 'nt'
 if WIN:
-	from wiindows import WinBT, discover_devices as discover_win
+	from .wiindows import WinBT, discover_devices as discover_win
 else:
 	import bluetooth
 
@@ -249,51 +248,3 @@ class Wiiboard:
 	def __exit__(self, exc_type, exc_val, exc_tb):
 		self.close()
 		return not exc_type # re-raise exception if any
-
-class WiiboardSampling(Wiiboard):
-	def __init__(self, address=None, nsamples=N_SAMPLES):
-		Wiiboard.__init__(self, address)
-		self.samples = collections.deque([], nsamples)
-
-	def on_mass(self, mass):
-		self.samples.append(mass)
-		self.on_sample()
-
-	def on_sample(self):
-		time.sleep(0.01)
-
-# client class where we can re-define callbacks
-class WiiboardPrint(WiiboardSampling):
-	def __init__(self, address=None, nsamples=N_SAMPLES):
-		WiiboardSampling.__init__(self, address, nsamples)
-		self.nloop = 0
-
-	def on_sample(self):
-		if len(self.samples) == N_SAMPLES:
-			samples = [sum(sample.values()) for sample in self.samples]
-			print("%.3f %.3f"%(time.time(), sum(samples) / len(samples)))
-			self.samples.clear()
-			self.status() # Stop the board from publishing mass data
-			self.nloop += 1
-			if self.nloop > N_LOOP:
-				return self.close()
-			time.sleep(T_SLEEP)
-
-def main():
-	import sys
-	if '-d' in sys.argv:
-		logger.setLevel(logging.DEBUG)
-		sys.argv.remove('-d')
-	if len(sys.argv) > 1:
-		address = sys.argv[1]
-	else:
-		wiiboards = discover_wiiboards()
-		logger.info(f"Found {len(wiiboards)} wiiboards: {wiiboards}")
-		if not wiiboards:
-			raise Exception("Press the red sync button on the board")
-		address = wiiboards[0]
-	with WiiboardPrint(address) as wiiprint:
-		wiiprint.loop()
-
-if __name__ == '__main__':
-	main()
