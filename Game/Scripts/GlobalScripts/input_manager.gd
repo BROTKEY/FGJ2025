@@ -8,7 +8,7 @@ var last_known_volume_value = 0
 
 func _ready() -> void:
 	OS.open_midi_inputs()
-	print(OS.get_connected_midi_inputs())
+	print("MIDI Devices: ", OS.get_connected_midi_inputs())
 	var wiiboard = $WiiboardController
 	if wiiboard == null:
 		print("No WiiboardController!")

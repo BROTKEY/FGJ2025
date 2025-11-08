@@ -1,11 +1,19 @@
-extends Node2D
+extends BaseMicrogame
 
+var difficulty: float = 1.0
+var won: bool = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func get_difficulty() -> float:
+	return difficulty
 
+func set_difficulty(value: float) -> void:
+	difficulty = value
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func get_won() -> bool:
+	return won
+
+func get_game_name() -> String:
+	return 'KeyboardReflex'
+
+func get_input_device() -> InputDevice:
+	return InputDevice.MIDI_KEYBOARD

@@ -28,3 +28,9 @@ func set_difficulty(value: float) -> void:
 
 func get_won() -> bool:
 	return won
+
+func get_game_name() -> String:
+	return 'FryMeUp'
+
+func get_input_device() -> InputDevice:
+	return InputDevice.PINECIL

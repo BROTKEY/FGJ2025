@@ -50,11 +50,11 @@ class wiiboard_controller(Node):
 
 	if HAS_WIIBOARD:
 		def _ready(self) -> None:
-			print("Searching wii boards...")
 			boards = discover_wiiboards(5)
+			print(f"Found {len(boards)} wii board(s)")
 			if (boards):
 				self.board_address = boards[0]
-				print("Connecting to WiiBoard:", self.board_address)
+				print(f"Connecting to WiiBoard: {self.board_address}")
 				self.board = Wiiboard()
 				self.board.connect(self.board_address)
 				print("Connected, Starting WiiBoard Controller...")
