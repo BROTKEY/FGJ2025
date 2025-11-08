@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dignhgswecofw"]
+[gd_scene load_steps=4 format=3 uid="uid://dignhgswecofw"]
 
+[ext_resource type="Script" uid="uid://dgt0d3dqhtc5k" path="res://Scripts/MainMenu/main_menu.gd" id="1_8saeu"]
 [ext_resource type="Script" uid="uid://bpawwj5nd3yet" path="res://Scripts/MainMenu/main_menu_control.gd" id="1_853f1"]
 [ext_resource type="Theme" uid="uid://bji6fxuxjgtkk" path="res://Ui/Themes/MainTheme.tres" id="2_8saeu"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8saeu")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
