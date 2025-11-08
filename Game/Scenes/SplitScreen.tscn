@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://daxbl8ban2gpi"]
+
+[ext_resource type="Script" uid="uid://c3iar42cjtxye" path="res://Scripts/SplitScreen/split_screen.gd" id="1_w2mmi"]
+
+[node name="SplitScreen" type="Node2D"]
+script = ExtResource("1_w2mmi")
+
+[node name="ChildScenes" type="Node" parent="."]
+
+[node name="TextureRectL" type="TextureRect" parent="ChildScenes"]
+clip_contents = true
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+stretch_mode = 3
+
+[node name="SubViewportL" type="SubViewport" parent="ChildScenes/TextureRectL"]
+
+[node name="TextureRectR" type="TextureRect" parent="ChildScenes"]
+clip_contents = true
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+stretch_mode = 3
+
+[node name="SubViewportR" type="SubViewport" parent="ChildScenes/TextureRectR"]
