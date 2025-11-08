@@ -6,7 +6,16 @@ from py4godot.signals import signal, SignalArg
 import time
 from threading import Thread
 
-from . import wiiboard
+try:
+	from .wiiboard import Wiiboard, discover_wiiboards
+	HAS_WIIBOARD = True
+except:
+	print("Failed to load the wiiboard library")
+	def discover_wiiboards(*_args, **_kwargs):
+		return []
+	class Wiiboard:
+		pass
+	HAS_WIIBOARD = False
 
 
 class WeightMeasurement:
@@ -26,7 +35,7 @@ class wiiboard_controller(Node):
 	board_connected: bool = False
 	board_address: str = ''
 	
-	board: wiiboard.Wiiboard = None
+	board: Wiiboard = None
 	board_thread: Thread = None
 	
 	weights: dict[str, float] = {
@@ -39,21 +48,21 @@ class wiiboard_controller(Node):
 	_weight_history = []
 	_jump_timeout = 0.0
 
-
-	def _ready(self) -> None:
-		print("Searching wii boards...")
-		boards = wiiboard.discover_wiiboards(5)
-		if (boards):
-			self.board_address = boards[0]
-			print("Connecting to WiiBoard:", self.board_address)
-			self.board = wiiboard.Wiiboard()
-			self.board.connect(self.board_address)
-			print("Connected, Starting WiiBoard Controller...")
-			self.board_thread = Thread(target=self.board.loop)
-			self.board_thread.start()
-			self.board_connected = True
-		else:
-			print("No WiiBoards found!")
+	if HAS_WIIBOARD:
+		def _ready(self) -> None:
+			print("Searching wii boards...")
+			boards = discover_wiiboards(5)
+			if (boards):
+				self.board_address = boards[0]
+				print("Connecting to WiiBoard:", self.board_address)
+				self.board = Wiiboard()
+				self.board.connect(self.board_address)
+				print("Connected, Starting WiiBoard Controller...")
+				self.board_thread = Thread(target=self.board.loop)
+				self.board_thread.start()
+				self.board_connected = True
+			else:
+				print("No WiiBoards found!")
 
 
 	def _process(self, _delta: float) -> None:
