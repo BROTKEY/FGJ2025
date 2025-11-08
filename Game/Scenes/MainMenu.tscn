@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://dignhgswecofw"]
+
+[ext_resource type="Script" uid="uid://dgt0d3dqhtc5k" path="res://Scripts/MainMenu/main_menu.gd" id="1_8saeu"]
+[ext_resource type="Script" uid="uid://bpawwj5nd3yet" path="res://Scripts/MainMenu/main_menu_control.gd" id="1_853f1"]
+[ext_resource type="Theme" uid="uid://bji6fxuxjgtkk" path="res://Ui/Themes/MainTheme.tres" id="2_8saeu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8saeu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuControl" type="Control" parent="MainMenu" node_paths=PackedStringArray("start_button", "settings_button", "exit_button")]
+layout_mode = 2
+script = ExtResource("1_853f1")
+start_button = NodePath("../MarginContainer/VBoxContainer/StartButton")
+settings_button = NodePath("../MarginContainer/VBoxContainer/SettingsButton")
+exit_button = NodePath("../MarginContainer/VBoxContainer/ExitButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_8saeu")
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 64
+text = "untitled chicken fry game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_8saeu")
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_8saeu")
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_8saeu")
+text = "Exit"
+
+[node name="SettingsMenu" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1152.0
+offset_right = 1152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioSettings" type="Control" parent="SettingsMenu"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SettingsLabel" type="Label" parent="SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_8saeu")
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="SettingsMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_8saeu")
+text = "Back"

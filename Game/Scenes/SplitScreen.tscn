@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://daxbl8ban2gpi"]
+
+[ext_resource type="Script" uid="uid://c3iar42cjtxye" path="res://Scripts/SplitScreen/split_screen.gd" id="1_w2mmi"]
+[ext_resource type="Script" uid="uid://dxbxc0g07e6j6" path="res://Scripts/Ui/viewport_texture_rect.gd" id="2_06u6v"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iwmsr"]
+viewport_path = NodePath("Viewports/ViewportL")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6v1lb"]
+viewport_path = NodePath("Viewports/ViewportR")
+
+[node name="SplitScreen" type="Node2D"]
+script = ExtResource("1_w2mmi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Screens" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Screens"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TextureL" type="TextureRect" parent="CanvasLayer/Screens/HBoxContainer" node_paths=PackedStringArray("viewport")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_iwmsr")
+expand_mode = 1
+stretch_mode = 3
+script = ExtResource("2_06u6v")
+viewport = NodePath("../../../../Viewports/ViewportL")
+metadata/_custom_type_script = "uid://dxbxc0g07e6j6"
+
+[node name="Separator" type="ColorRect" parent="CanvasLayer/Screens/HBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureR" type="TextureRect" parent="CanvasLayer/Screens/HBoxContainer" node_paths=PackedStringArray("viewport")]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_6v1lb")
+expand_mode = 1
+stretch_mode = 3
+script = ExtResource("2_06u6v")
+viewport = NodePath("../../../../Viewports/ViewportR")
+metadata/_custom_type_script = "uid://dxbxc0g07e6j6"
+
+[node name="Viewports" type="Node" parent="."]
+
+[node name="ViewportL" type="SubViewport" parent="Viewports"]
+disable_3d = true
+size = Vector2i(1000, 1000)
+
+[node name="ViewportR" type="SubViewport" parent="Viewports"]
+disable_3d = true
+size = Vector2i(1000, 1000)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbcyeawowdgnl"]
+
+[ext_resource type="Script" uid="uid://jxgiu8stwplk" path="res://Scripts/Microgames/ShakeMe/shake-me.gd" id="1_k5rnx"]
+[ext_resource type="Texture2D" uid="uid://dvbsslcvwjl1o" path="res://Assets/Microgames/ShakeMe/471-4710170_transparent-diet-coke-bottle-png-coca-cola-pixel.png" id="2_6poo0"]
+[ext_resource type="Texture2D" uid="uid://cc7121j5hhv05" path="res://Assets/Microgames/ShakeMe/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png" id="3_6poo0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rogsi"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, 1, 0)
+spread = 180.0
+flatness = 0.5
+initial_velocity_min = 2000.0
+initial_velocity_max = 10000.0
+angular_velocity_min = 99.999985
+angular_velocity_max = 719.99994
+gravity = Vector3(0, 980, 0)
+scale_min = 0.02
+scale_max = 0.049999997
+
+[node name="ShakeMe" type="Node2D"]
+script = ExtResource("1_k5rnx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.7921569, 0.8627451, 0.68235296, 1)
+
+[node name="Bottle" type="Sprite2D" parent="."]
+position = Vector2(564, 224)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6poo0")
+
+[node name="Particels" type="GPUParticles2D" parent="."]
+position = Vector2(562, 104.00002)
+scale = Vector2(0.02, 0.02)
+emitting = false
+amount = 32
+texture = ExtResource("3_6poo0")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rogsi")
