@@ -13,6 +13,8 @@ var note = 0
 var song = [{"key": 4, "timestamp": 1875.0}, {"key": 2, "timestamp": 2187.0}, {"key": 4, "timestamp": 2500.0}, {"key": 4, "timestamp": 3750.0}, {"key": 7, "timestamp": 4062.0}, {"key": 5, "timestamp": 4375.0}]
 
 func handle_keystrokes(keyId, state) -> void:
+	if note >= 6:
+		note = 0
 	var time_d = Time.get_ticks_msec() - start_time  
 	var key = get_node("Keys/Key%s" % keyId)
 	if !key or !won:
@@ -36,6 +38,7 @@ func _ready() -> void:
 	start_time = Time.get_ticks_msec()
 	height = get_viewport().size.y
 	hitline = $Keys.position.y
+	note = 0
 	InputManager.keystroke.connect(handle_keystrokes)
 	for i in range(len(song)):
 		var keyboard_key = get_node("Keys/Key%s" % song[i]["key"]) as ColorRect

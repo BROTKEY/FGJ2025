@@ -22,13 +22,13 @@ func _process(_delta: float) -> void:
 	#shake down
 	if shake_state <= -1:
 		$Bottle.position = Vector2(564, 424)
-		if last_state != shake_state and !won:
+		if !won:
 			shakes += 1
 		last_state = shake_state
 	#shake up	
 	if shake_state >= 1:
 		$Bottle.position = Vector2(564, 224)
-		if last_state != shake_state and !won:
+		if !won:
 			shakes += 1
 		last_state = shake_state
 			
