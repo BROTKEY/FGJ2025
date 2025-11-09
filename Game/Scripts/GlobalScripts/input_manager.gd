@@ -102,8 +102,11 @@ func get_soldering_iron_shake_state() -> float:
 		shake_state = -1 
 	return shake_state
 
+func get_soldering_iron_screen():
+	return $Pinecil.get_current_menu()
+
 func set_soldering_iron_screen(screen: PinecilMenus):
-	pass
+	$Pinecil.change_menu(screen)
 
 func get_wii_jump() -> float:
 	# TODO: remove

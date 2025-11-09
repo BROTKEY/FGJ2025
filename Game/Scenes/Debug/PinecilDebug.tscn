@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvlknuy5geypa"]
 
-[ext_resource type="Script" uid="uid://bnqye8vp48m25" path="res://Scripts/Inputs/pinecil_debug.gd" id="1_np4c1"]
+[ext_resource type="Script" uid="uid://bnqye8vp48m25" path="res://Scripts/Debug/pinecil_debug.gd" id="1_np4c1"]
 
 [node name="PinecilDebug" type="Node2D"]
 script = ExtResource("1_np4c1")
@@ -48,6 +48,10 @@ layout_mode = 2
 text = "Menus"
 horizontal_alignment = 1
 
+[node name="GetScreen" type="Button" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Get Current Screen"
+
 [node name="MainMenu" type="Button" parent="GridContainer/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
@@ -60,6 +64,7 @@ text = "Temperature Adjust"
 layout_mode = 2
 text = "Shake"
 
+[connection signal="pressed" from="GridContainer/VBoxContainer/GetScreen" to="." method="_on_get_screen_pressed"]
 [connection signal="pressed" from="GridContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="GridContainer/VBoxContainer/TempAdjust" to="." method="_on_temp_adjust_pressed"]
 [connection signal="pressed" from="GridContainer/VBoxContainer/ShakeMenu" to="." method="_on_shake_menu_pressed"]

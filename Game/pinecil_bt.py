@@ -55,17 +55,15 @@ class pinecil_bt(Node):
 		return value
 	
 	def get_current_menu(self):
-		menu = None
+		menu = -1
 		if self.pynecil_client is not None:
 			try:
-				menu = self.loop.run_until_complete(self.pynecil_client.read(CharGameJam.MENU))
+				menu = self.loop.run_until_complete(self.pynecil_client.read(CharGameJam.MENU)).value
 			except (TimeoutError, CommunicationError) as e:
 				print("get_current_menu() Error: {}".format(e))
 		return menu
-
 	
 	def change_menu(self, menu) -> bool:
-		print(menu)
 		if self.pynecil_client is not None:
 			try:
 				self.loop.run_until_complete(self.pynecil_client.write(CharGameJam.MENU, menu))

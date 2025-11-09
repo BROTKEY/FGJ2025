@@ -290,3 +290,5 @@ offset_top = 593.0
 offset_right = 727.0
 offset_bottom = 973.0
 color = Color(0.72156864, 0.4862745, 0.29803923, 1)
+
+[connection signal="tree_exiting" from="Fire" to="." method="_on_fire_tree_exiting"]
