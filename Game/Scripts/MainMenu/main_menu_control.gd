@@ -19,11 +19,7 @@ func _exit_tree():
 
 
 func _on_start_pressed():
-	# TODO: load random scenes here
-	SceneManager.show_split_screen_from_file(
-		"res://Scenes/Microgames/FryMeUp.tscn",
-		"res://Scenes/Microgames/FryMeUp.tscn"
-	)
+	GameManager.start_new_game()
 
 
 func _on_exit_pressed():
