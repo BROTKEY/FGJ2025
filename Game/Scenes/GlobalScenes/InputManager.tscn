@@ -3,20 +3,16 @@
 [ext_resource type="Script" uid="uid://dwjl3memqhym1" path="res://Scripts/GlobalScripts/input_manager.gd" id="1_vobp1"]
 [ext_resource type="Script" path="res://wiiboard_controller.py" id="2_lci8e"]
 [ext_resource type="Script" path="res://pinecil_bt.py" id="3_025xc"]
-[ext_resource type="Script" uid="uid://duvb46fey3dwv" path="res://Scripts/Common/pinecil_types.gd" id="4_asfg7"]
+[ext_resource type="Script" path="res://Scripts/Common/pinecil_types.gd" id="4_asfg7"]
 
 [node name="InputManager" type="Node2D"]
 script = ExtResource("1_vobp1")
 
 [node name="WiiboardController" type="Node" parent="."]
 _import_path = NodePath("")
-unique_name_in_owner = false
 process_mode = 0
-process_priority = 0
 process_physics_priority = 0
-process_thread_group = 0
 physics_interpolation_mode = 0
-auto_translate_mode = 0
 editor_description = ""
 script = ExtResource("2_lci8e")
 wiiboard_lib_loaded = true
@@ -26,13 +22,9 @@ board_address = ""
 
 [node name="Pinecil" type="Node" parent="."]
 _import_path = NodePath("")
-unique_name_in_owner = false
 process_mode = 0
-process_priority = 0
 process_physics_priority = 0
-process_thread_group = 0
 physics_interpolation_mode = 0
-auto_translate_mode = 0
 editor_description = ""
 script = ExtResource("3_025xc")
 pinecil_lib_loaded = false

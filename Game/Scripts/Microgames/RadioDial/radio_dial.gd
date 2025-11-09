@@ -12,9 +12,6 @@ var slider_original_pos = 0
 var slider_thiccness = 0
 
 func volume_changed(value)-> void:
-	print(value)
-	print(target)
-	print('----------')
 	$Slider.position.x = slider_original_pos-bar_total_length/2.0 + bar_deadzone + (((bar_total_length-bar_deadzone*2)/128.0) * value) -slider_thiccness/2.0
 		
 	if value < target + deadzone and value > target - deadzone:

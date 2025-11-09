@@ -3,7 +3,7 @@ extends BaseMicrogame
 var difficulty: float = 1.0
 var won: bool = true
 var start_time = 0
-var tollerance = 150
+var tollerance = 200
 var note_jump_offset_mult = 0.4
 
 var height = 0
@@ -22,7 +22,7 @@ func handle_keystrokes(keyId, state) -> void:
 		(key as ColorRect).color = Color(0.585, 0.585, 0.585, 1.0)
 		print(time_d)
 		print(song[note]["timestamp"])
-		if time_d < song[note]["timestamp"] + tollerance and time_d > song[note]["timestamp"] - tollerance and keyId == song[note]["key"]:
+		if time_d < song[note]["timestamp"] + tollerance and time_d > song[note]["timestamp"] - tollerance and keyId == song[note]["key"] and len(song) > note:
 			var particles = get_node("Keys/Key%s/Particels" % keyId) as GPUParticles2D
 			particles.emitting = true
 			note += 1
