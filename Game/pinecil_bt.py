@@ -20,8 +20,6 @@ class pinecil_bt(Node):
 	pynecil_client = None
 	loop = None
 
-	MENUS = {menu.name: menu.value for menu in PinecilMenus}
-
 	def _ready(self) -> None:
 		if HAS_PINECIL:
 			if self.loop is None:
@@ -42,7 +40,7 @@ class pinecil_bt(Node):
 			try:
 				temperature = self.loop.run_until_complete(self.pynecil_client.read(CharLive.SETPOINT_TEMP))
 			except (TimeoutError, CommunicationError) as e:
-				print("Pynecil Error: {}".format(e))
+				print("get_current_temperature() Error: {}".format(e))
 				temperature = -1
 		return temperature
 
@@ -62,17 +60,18 @@ class pinecil_bt(Node):
 			try:
 				menu = self.loop.run_until_complete(self.pynecil_client.read(CharGameJam.MENU))
 			except (TimeoutError, CommunicationError) as e:
-				print("Pynecil Error: {}".format(e))
+				print("get_current_menu() Error: {}".format(e))
 		return menu
 
 	
 	def change_menu(self, menu: PinecilMenus) -> bool:
+		print(menu)
 		if self.pynecil_client is not None:
 			try:
 				self.loop.run_until_complete(self.pynecil_client.write(CharGameJam.MENU, menu))
 				return True
 			except (TimeoutError, CommunicationError) as e:
-				print("Pynecil Error: {}".format(e))
+				print("change_menu() Error: {}".format(e))
 		return False
 
 	def _exit_tree(self):
