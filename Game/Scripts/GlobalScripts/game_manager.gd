@@ -48,6 +48,14 @@ var micro_game_scenes = {
 	MicroGame.RADIO_DIAL: preload("res://Scenes/Microgames/RadioDial.tscn"),
 }
 
+var micro_game_names = {
+	MicroGame.FRY_ME_UP: "Fry Me Up!",
+	MicroGame.SHAKE_ME: "Shake Me!",
+	MicroGame.JUMP: "Jump!",
+	MicroGame.KEYBOARD_REFLEX: "Pianist!",
+	MicroGame.RADIO_DIAL: "Radio!",
+}
+
 var team_game_devices = {
 	TeamGame.TEAM_PLATFORMER: [InputManager.InputDevice.MIDI_KEYBOARD, InputManager.InputDevice.WII_BOARD]
 }
@@ -56,6 +64,9 @@ var team_game_scenes = {
 	TeamGame.TEAM_PLATFORMER: preload("res://Scenes/Microgames/TeamPlatformer.tscn")
 }
 
+var team_game_names = {
+	TeamGame.TEAM_PLATFORMER: "Mind the Gap!"
+}
 
 var current_state = State.MAIN_MENU
 var num_games_finished = 0
@@ -64,11 +75,16 @@ var lifes = 3
 var current_microgames: Array[BaseMicrogame] = []
 var current_teamgame = null
 
+var next_ugames = []
+var next_teamgame = []
+
 var time_in_infoscreen: float = 0.0
 var time_in_preparation: float = 0.0
 var time_in_microgame: float = 0.0
 var time_in_teamgame: float = 0.0
 
+const scene_infoscreen = preload("res://Scenes/InfoScreen.tscn")
+const scene_preparation = preload("res://Scenes/Common/PreparationScreen.tscn")
 
 func reset_stats() -> void:
 	num_games_finished = 0
@@ -80,8 +96,7 @@ func start_new_game():
 	reset_stats()
 	current_microgames.clear()
 	current_teamgame = null
-	# TODO: go to infoscreen instead
-	_goto_microgame()
+	_goto_infoscreen()
 
 
 ## Find available micro games
@@ -121,7 +136,7 @@ func pick_two_games() -> Array:
 
 
 ## Pick a random team game (boss game)
-func pick_team_game() -> TeamGame:
+func pick_team_game():
 	print('Scanning TeamGames...')
 	var found_games = []
 	for game_type in team_game_devices:
@@ -155,11 +170,9 @@ func _reduce_lifes(amount: int = 1):
 ## Change state to MicroGame
 func _goto_microgame():
 	print("State -> MicroGame")
-	var game_types = pick_two_games()
-	print("Picked two games: ", game_types)
-	assert(len(game_types) == 2)
+	assert(len(next_ugames) == 2)
 	current_microgames.clear()
-	for game_type in game_types:
+	for game_type in next_ugames:
 		var game = micro_game_scenes[game_type].instantiate()
 		print(" - ", game.get_game_name())
 		current_microgames.append(game)
@@ -171,23 +184,30 @@ func _goto_microgame():
 func _goto_team_game():
 	print("State -> TeamGame")
 	time_in_teamgame = 0.0
-	current_teamgame = null
+	var game_type = pick_team_game()
+	current_teamgame = team_game_scenes[game_type].instantiate()
+	print("Picked TeamGame: ", current_teamgame.get_game_name())
+	SceneManager.set_current_scene(current_teamgame)
 	current_state = State.TEAM_GAME
-	# TODO: actual transition
 
 
 func _goto_infoscreen():
 	print("State -> InfoScreen")
 	time_in_infoscreen = 0.0
+	SceneManager.set_current_scene(scene_infoscreen.instantiate())
 	current_state = State.INFO_SCREEN
-	# TODO: actual transition
 
 
 func _goto_preparation():
 	print("State -> PreparationScreen")
+	
+	next_ugames = pick_two_games()
+	assert(len(next_ugames) == 2)
+	print("Picked two games: ", next_ugames)
+	
 	time_in_preparation = 0.0
+	SceneManager.set_current_scene(scene_preparation.instantiate())
 	current_state = State.PREPARATION
-	# TODO: actual transition
 
 
 func _goto_main_menu():

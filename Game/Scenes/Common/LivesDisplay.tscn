@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpe1abf2lmowu"]
+
+[ext_resource type="Script" uid="uid://bnatcqylif8m7" path="res://Scripts/Common/lives_display.gd" id="1_0osnx"]
+[ext_resource type="Texture2D" uid="uid://debyofslxm66a" path="res://Assets/Common/Heart.png" id="2_y8pl6"]
+
+[node name="LivesDisplay" type="Node2D"]
+script = ExtResource("1_0osnx")
+
+[node name="Heart1" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_y8pl6")
+
+[node name="Heart2" type="TextureRect" parent="."]
+offset_left = 64.0
+offset_right = 164.0
+offset_bottom = 99.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_y8pl6")
+
+[node name="Heart3" type="TextureRect" parent="."]
+offset_left = 128.0
+offset_top = -1.0
+offset_right = 228.0
+offset_bottom = 98.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_y8pl6")

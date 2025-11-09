@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6glmihaxwm84"]
+
+[ext_resource type="Theme" uid="uid://bji6fxuxjgtkk" path="res://Ui/Themes/MainTheme.tres" id="1_05q84"]
+[ext_resource type="Script" uid="uid://bii637oig0c81" path="res://Scripts/InfoScreen/info_screen_controller.gd" id="1_w4pd2"]
+[ext_resource type="PackedScene" uid="uid://bpe1abf2lmowu" path="res://Scenes/Common/LivesDisplay.tscn" id="3_yhoxm"]
+
+[node name="InfoScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4pd2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_05q84")
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_05q84")
+theme_override_font_sizes/font_size = 64
+text = "Ready?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountDown" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="LivesDisplay" parent="." instance=ExtResource("3_yhoxm")]
+position = Vector2(16, 16)
