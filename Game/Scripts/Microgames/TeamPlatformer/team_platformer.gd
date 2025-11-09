@@ -42,3 +42,6 @@ func _process(_delta: float) -> void:
 
 func get_won() -> bool:
 	return won
+
+func get_game_name() -> String:
+	return "TeamPlay"

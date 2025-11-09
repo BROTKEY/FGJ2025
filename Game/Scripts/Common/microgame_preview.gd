@@ -18,21 +18,31 @@ const device_icons = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var games = GameManager.next_ugames
-	print("PreparationScreen #", index, ": games = ", games)
 	var game_title = "UNKNOWN GAME"
 	var dev_title = "Unknown Device"
-	if index < len(games):
-		var game = games[index]
-		game_title = GameManager.micro_game_names[game]
-		var device = GameManager.game_devices[game]
+	if  GameManager.num_games_finished > 0 and (GameManager.num_games_finished % GameManager.TEAM_GAME_EVERY_N_GAMES) == 0:
+		# do team game
+		game_title = "Team Play!"
+		var device = InputManager.InputDevice.MIDI_KEYBOARD
+		if index != 0:
+			device = InputManager.InputDevice.WII_BOARD
 		dev_title = InputManager.DeviceDisplayNames[device]
-		if device in device_icons:
-			print("Found Icon for device ", dev_title)
-			$AspectRatioContainer/MarginContainer/VBoxContainer/DeviceIcon.texture = device_icons[device]
-		else:
-			print("No Icon found for device ", dev_title)
+		$AspectRatioContainer/MarginContainer/VBoxContainer/DeviceIcon.texture = device_icons[device]
 	else:
-		printerr("No ugame defined for player ", index)
+		# do micro game
+		var games = GameManager.next_ugames
+		print("PreparationScreen #", index, ": games = ", games)
+		if index < len(games):
+			var game = games[index]
+			game_title = GameManager.micro_game_names[game]
+			var device = GameManager.game_devices[game]
+			dev_title = InputManager.DeviceDisplayNames[device]
+			if device in device_icons:
+				print("Found Icon for device ", dev_title)
+				$AspectRatioContainer/MarginContainer/VBoxContainer/DeviceIcon.texture = device_icons[device]
+			else:
+				print("No Icon found for device ", dev_title)
+		else:
+			printerr("No ugame defined for player ", index)
 	$AspectRatioContainer/MarginContainer/VBoxContainer/GameTitle.text = game_title
 	$AspectRatioContainer/MarginContainer/VBoxContainer/DeviceName.text = dev_title

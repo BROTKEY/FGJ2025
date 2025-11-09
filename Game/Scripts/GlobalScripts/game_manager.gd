@@ -9,7 +9,7 @@ const DURATION_INFOSCREEN = 2.5 # TODO: increase
 const DURATION_PREPARATION = 2.5 # TODO: increase
 
 
-const TEAM_GAME_EVERY_N_GAMES = 5
+const TEAM_GAME_EVERY_N_GAMES = 2
 
 
 enum State {
@@ -200,10 +200,11 @@ func _goto_microgame():
 func _goto_team_game():
 	print("State -> TeamGame")
 	time_in_teamgame = 0.0
-	var game_type = pick_team_game()
+	var game_type = TeamGame.TEAM_PLATFORMER
 	current_teamgame = team_game_scenes[game_type].instantiate()
 	print("Picked TeamGame: ", current_teamgame.get_game_name())
 	SceneManager.set_current_scene(current_teamgame)
+	AudioManager.play_game_boss()
 	current_state = State.TEAM_GAME
 
 
@@ -219,16 +220,20 @@ func _goto_preparation():
 	print("State -> PreparationScreen")
 	time_in_preparation = 0.0
 	
-	next_ugames = pick_two_games()
-	assert(len(next_ugames) == 2)
-	print("Picked two games: ", next_ugames)
-	
-	var audio_name_l = game_name_audio_mappings[next_ugames[0]]
-	var audio_name_r = game_name_audio_mappings[next_ugames[1]]
-	
-	SceneManager.set_current_scene(scene_preparation.instantiate())
-	AudioManager.play_transition(audio_name_l, audio_name_r)
-	
+	if num_games_finished > 0 and (num_games_finished % TEAM_GAME_EVERY_N_GAMES) == 0:
+		SceneManager.set_current_scene(scene_preparation.instantiate())
+		AudioManager.play_transition_base()
+	else:
+		next_ugames = pick_two_games()
+		assert(len(next_ugames) == 2)
+		print("Picked two games: ", next_ugames)
+		
+		var audio_name_l = game_name_audio_mappings[next_ugames[0]]
+		var audio_name_r = game_name_audio_mappings[next_ugames[1]]
+		
+		SceneManager.set_current_scene(scene_preparation.instantiate())
+		AudioManager.play_transition(audio_name_l, audio_name_r)
+		
 	current_state = State.PREPARATION
 
 
@@ -254,17 +259,20 @@ func _process_infoscreen(delta: float):
 func _process_preparation(delta: float):
 	time_in_preparation += delta
 	if time_in_preparation >= DURATION_PREPARATION:
-		_goto_microgame()
+		if num_games_finished > 0 and (num_games_finished % TEAM_GAME_EVERY_N_GAMES) == 0:
+			_goto_team_game()
+		else:
+			_goto_microgame()
 
 
 func _process_microgame(delta: float):
 	time_in_microgame += delta
 	if time_in_microgame >= DURATION_MICROGAME:
 		print("Time over, ending microgames")
+		num_games_finished += 1
 		var won = true
 		for game in current_microgames:
 			won = won and game.get_won()
-		
 		if won:
 			print("All games won")
 			_goto_infoscreen()
