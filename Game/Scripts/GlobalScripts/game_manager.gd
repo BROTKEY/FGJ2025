@@ -264,6 +264,7 @@ func _process_microgame(delta: float):
 		
 		if won:
 			print("All games won")
+			_goto_infoscreen()
 		else:
 			print("NOT all games won")
 			_reduce_lifes()
@@ -277,6 +278,7 @@ func _process_teamgame(delta: float):
 			var won = current_teamgame.get_won()
 			if won:
 				print("Team game won")
+				_goto_infoscreen()
 			else:
 				print("Team game NOT won")
 				_reduce_lifes()
