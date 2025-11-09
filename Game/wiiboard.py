@@ -15,7 +15,7 @@ import os
 
 WIN = os.name == 'nt'
 if WIN:
-	from .wiindows import WinBT, discover_devices as discover_win
+	from wiindows import WinBT, discover_devices as discover_win
 else:
 	import bluetooth
 
