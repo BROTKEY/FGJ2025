@@ -1,12 +1,27 @@
+
+import os
+
+WIN = os.name == 'nt'
+if WIN:
+	import sys
+	sys.coinit_flags = 0
+
 from py4godot.methods import private
 from py4godot.signals import signal, SignalArg
 from py4godot.classes import gdclass
 from py4godot.classes.core import Vector3
 from py4godot.classes.Node import Node
 
+try:
+	from bleak.backends.winrt.util import uninitialize_sta
+	uninitialize_sta()  # undo the unwanted side effect
+except ImportError:
+	# not Windows, so no problem
+	pass
+
 import asyncio
 try:
-	from pynecil import Pynecil, CharLive, CharGameJam, discover, CommunicationError, CharSetting, PinecilMenus
+	from pynecil import Pynecil, CharLive, CharGameJam, discover, CommunicationError, CharSetting
 	HAS_PINECIL = True
 except:
 	print("Failed to load the pinecil library")
@@ -32,8 +47,6 @@ class pinecil_bt(Node):
 					print(f"Found Pinecil: {device}")
 					self.pynecil_client = Pynecil(device)
 					self.pinecil_connected = True
-					
-					self.change_menu(PinecilMenus.GameJamHome)
 				else:
 					print("No Pinecil found!")
 

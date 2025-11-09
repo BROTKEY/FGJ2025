@@ -15,7 +15,16 @@ import os
 
 WIN = os.name == 'nt'
 if WIN:
+	import sys
+	sys.coinit_flags = 0
 	from wiindows import WinBT, discover_devices as discover_win
+	try:
+		from bleak.backends.winrt.util import uninitialize_sta
+
+		uninitialize_sta()  # undo the unwanted side effect
+	except ImportError:
+		# not Windows, so no problem
+		pass
 else:
 	import bluetooth
 

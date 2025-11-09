@@ -1,9 +1,21 @@
+
+import sys
+sys.coinit_flags = 0
+
 import pywinusb.hid as hid
 import logging
 from pywinusb.hid import winapi
 from pywinusb.hid.winapi import c_ubyte, c_ulong, CreateFile, ReadFile, WriteFile, CloseHandle, byref
 from pywinusb.hid.helpers import HIDError
 from ctypes import GetLastError, FormatError
+
+try:
+	from bleak.backends.winrt.util import uninitialize_sta
+
+	uninitialize_sta()  # undo the unwanted side effect
+except ImportError:
+	# not Windows, so no problem
+	pass
 
 LOG = logging.getLogger(__name__)
 handler = logging.StreamHandler() # or RotatingFileHandler

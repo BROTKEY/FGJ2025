@@ -1,3 +1,9 @@
+import os
+WIN = os.name == 'nt'
+if WIN:
+	import sys
+	sys.coinit_flags = 0
+
 from py4godot.classes import gdclass
 from py4godot.classes.core import Vector2, Vector4
 from py4godot.classes.Node import Node
@@ -8,6 +14,13 @@ from threading import Thread
 
 try:
 	from wiiboard import Wiiboard, discover_wiiboards
+	try:
+		from bleak.backends.winrt.util import uninitialize_sta
+
+		uninitialize_sta()  # undo the unwanted side effect
+	except ImportError:
+		# not Windows, so no problem
+		pass
 	HAS_WIIBOARD = True
 except:
 	print("Failed to load the wiiboard library")
