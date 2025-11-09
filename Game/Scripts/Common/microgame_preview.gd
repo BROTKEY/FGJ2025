@@ -7,10 +7,12 @@ var index: int = 0
 
 const icon_pinecil = preload("res://Assets/Common/Pinecil.png")
 const icon_wiiboard = preload("res://Assets/Common/WiiBoard.png")
+const icon_midi_keyboard = preload("res://Assets/Common/MidiKeyboard.png")
 
 const device_icons = {
 	InputManager.InputDevice.PINECIL: icon_pinecil,
 	InputManager.InputDevice.WII_BOARD: icon_wiiboard,
+	InputManager.InputDevice.MIDI_KEYBOARD: icon_midi_keyboard,
 }
 
 
