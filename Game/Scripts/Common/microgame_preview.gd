@@ -5,6 +5,15 @@ extends Control
 var index: int = 0
 
 
+const icon_pinecil = preload("res://Assets/Common/Pinecil.png")
+const icon_wiiboard = preload("res://Assets/Common/WiiBoard.png")
+
+const device_icons = {
+	InputManager.InputDevice.PINECIL: icon_pinecil,
+	InputManager.InputDevice.WII_BOARD: icon_wiiboard,
+}
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var games = GameManager.next_ugames
@@ -16,5 +25,12 @@ func _ready() -> void:
 		game_title = GameManager.micro_game_names[game]
 		var device = GameManager.game_devices[game]
 		dev_title = InputManager.DeviceDisplayNames[device]
+		if device in device_icons:
+			print("Found Icon for device ", dev_title)
+			$AspectRatioContainer/MarginContainer/VBoxContainer/DeviceIcon.texture = device_icons[device]
+		else:
+			print("No Icon found for device ", dev_title)
+	else:
+		printerr("No ugame defined for player ", index)
 	$AspectRatioContainer/MarginContainer/VBoxContainer/GameTitle.text = game_title
 	$AspectRatioContainer/MarginContainer/VBoxContainer/DeviceName.text = dev_title
