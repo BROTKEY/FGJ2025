@@ -54,7 +54,7 @@ class pinecil_bt(Node):
 				value = 0
 		return value
 	
-	def get_current_menu(self) -> PinecilMenus:
+	def get_current_menu(self):
 		menu = None
 		if self.pynecil_client is not None:
 			try:
@@ -64,7 +64,7 @@ class pinecil_bt(Node):
 		return menu
 
 	
-	def change_menu(self, menu: PinecilMenus) -> bool:
+	def change_menu(self, menu) -> bool:
 		print(menu)
 		if self.pynecil_client is not None:
 			try:
