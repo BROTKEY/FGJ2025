@@ -1,6 +1,6 @@
 extends BaseMicrogame
 
-var cooked_chicken = preload("res://Assets/Microgames/FryMeUp/Cooked_Chicken_JE3_BE3.png")
+var cooked_chicken = preload("res://Assets/Microgames/FryMeUp/chicken.png")
 var cooking_percentage = 0
 var won = false
 @export var cooking_time_s = 0.1

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dt80d4ujydduj" path="res://Assets/Microgames/Jump/jump_wall.png" id="2_yclec"]
 [ext_resource type="Texture2D" uid="uid://b7e2talnut4j3" path="res://Assets/Microgames/Jump/jumping_man.png" id="4_sqkrd"]
 [ext_resource type="Script" uid="uid://blsrtvhtdej0r" path="res://Scripts/Microgames/Jump/person.gd" id="4_yclec"]
-[ext_resource type="Texture2D" uid="uid://d1emib81t3lgx" path="res://Assets/Microgames/Jump/star_red.png" id="5_yclec"]
+[ext_resource type="Texture2D" uid="uid://bvletf3estwph" path="res://Assets/Microgames/Jump/star_blue.png" id="5_yclec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05107"]
 size = Vector2(145, 392.5)
@@ -22,8 +22,8 @@ angle_max = 720.0
 direction = Vector3(1, 1, 0)
 spread = 180.0
 flatness = 0.5
-initial_velocity_min = 2000.0
-initial_velocity_max = 10000.0
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
 angular_velocity_min = 99.999985
 angular_velocity_max = 719.99994
 gravity = Vector3(0, 980, 0)
@@ -36,7 +36,7 @@ script = ExtResource("1_05107")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.9512375, 0.73560774, 0.7692792, 1)
+color = Color(0.9607843, 0.9372549, 0.9019608, 1)
 
 [node name="Hurdle" type="Area2D" parent="."]
 position = Vector2(1668, 1053)
@@ -73,9 +73,8 @@ shape = SubResource("WorldBoundaryShape2D_05107")
 
 [node name="Particels" type="GPUParticles2D" parent="."]
 position = Vector2(564, 588)
-scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 32
+amount = 128
 texture = ExtResource("5_yclec")
 lifetime = 10.0
 one_shot = true
