@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7lleimqw2001"
-path="res://.godot/imported/pngegg.png-1ea8aa7fe5ff6f0a415b0d1196d82498.ctex"
+uid="uid://b7e2talnut4j3"
+path="res://.godot/imported/jumping_man.png-f329625abb2e1cc1a4433f81894510ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Microgames/TeamPlatformer/pngegg.png"
-dest_files=["res://.godot/imported/pngegg.png-1ea8aa7fe5ff6f0a415b0d1196d82498.ctex"]
+source_file="res://Assets/Microgames/Jump/jumping_man.png"
+dest_files=["res://.godot/imported/jumping_man.png-f329625abb2e1cc1a4433f81894510ec.ctex"]
 
 [params]
 

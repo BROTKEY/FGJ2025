@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdl6rcym1haxm"
-path="res://.godot/imported/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png-133e7999845bb6a4939df6175308a29b.ctex"
+uid="uid://dpwqnk0wpt7dp"
+path="res://.godot/imported/blue_bowl.png-23987edd9b3971d949415f876c0103a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Microgames/Jump/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png"
-dest_files=["res://.godot/imported/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png-133e7999845bb6a4939df6175308a29b.ctex"]
+source_file="res://Assets/Microgames/TeamPlatformer/blue_bowl.png"
+dest_files=["res://.godot/imported/blue_bowl.png-23987edd9b3971d949415f876c0103a6.ctex"]
 
 [params]
 

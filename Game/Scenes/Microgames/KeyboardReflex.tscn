@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dr8tt3c5657os"]
 
 [ext_resource type="Script" uid="uid://cxf5xh8megdro" path="res://Scripts/Microgames/KeyboardReflex/keyboard_reflex.gd" id="1_difiv"]
-[ext_resource type="Texture2D" uid="uid://cc7121j5hhv05" path="res://Assets/Microgames/ShakeMe/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png" id="2_ityvw"]
+[ext_resource type="Texture2D" uid="uid://ppu5y4d4eyml" path="res://Assets/Microgames/KeyboardReflex/star_green.png" id="2_ityvw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fga0l"]
 particle_flag_disable_z = true
@@ -40,7 +40,7 @@ offset_bottom = 160.0
 position = Vector2(20, 0)
 scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 4
+amount = 16
 texture = ExtResource("2_ityvw")
 lifetime = 0.2
 one_shot = true
@@ -57,7 +57,7 @@ offset_bottom = 160.0
 position = Vector2(20, 0)
 scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 4
+amount = 16
 texture = ExtResource("2_ityvw")
 lifetime = 0.2
 one_shot = true
@@ -74,7 +74,7 @@ offset_bottom = 160.0
 position = Vector2(20, 0)
 scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 4
+amount = 16
 texture = ExtResource("2_ityvw")
 lifetime = 0.2
 one_shot = true
@@ -91,7 +91,7 @@ offset_bottom = 160.0
 position = Vector2(20, 0)
 scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 4
+amount = 16
 texture = ExtResource("2_ityvw")
 lifetime = 0.2
 one_shot = true
@@ -108,7 +108,7 @@ offset_bottom = 160.0
 position = Vector2(20, 0)
 scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 4
+amount = 16
 texture = ExtResource("2_ityvw")
 lifetime = 0.2
 one_shot = true
@@ -125,7 +125,7 @@ offset_bottom = 160.0
 position = Vector2(20, 0)
 scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 4
+amount = 16
 texture = ExtResource("2_ityvw")
 lifetime = 0.2
 one_shot = true
@@ -142,7 +142,7 @@ offset_bottom = 160.0
 position = Vector2(20, 0)
 scale = Vector2(0.02, 0.02)
 emitting = false
-amount = 4
+amount = 16
 texture = ExtResource("2_ityvw")
 lifetime = 0.2
 one_shot = true
