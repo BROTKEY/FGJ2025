@@ -69,6 +69,7 @@ var time_in_preparation: float = 0.0
 var time_in_microgame: float = 0.0
 var time_in_teamgame: float = 0.0
 
+const scene_infoscreen = preload("res://Scenes/InfoScreen.tscn")
 
 func reset_stats() -> void:
 	num_games_finished = 0
@@ -80,8 +81,7 @@ func start_new_game():
 	reset_stats()
 	current_microgames.clear()
 	current_teamgame = null
-	# TODO: go to infoscreen instead
-	_goto_microgame()
+	_goto_infoscreen()
 
 
 ## Find available micro games
@@ -179,6 +179,7 @@ func _goto_team_game():
 func _goto_infoscreen():
 	print("State -> InfoScreen")
 	time_in_infoscreen = 0.0
+	SceneManager.set_current_scene(scene_infoscreen.instantiate())
 	current_state = State.INFO_SCREEN
 	# TODO: actual transition
 

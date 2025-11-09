@@ -4,6 +4,8 @@
 
 [node name="Game" type="Node2D"]
 
+[node name="NOTE_ this scene is currently not used" type="Node" parent="."]
+
 [node name="SplitScreen" parent="." instance=ExtResource("1_iukft")]
 
 [node name="Node2D" type="Node2D" parent="."]
