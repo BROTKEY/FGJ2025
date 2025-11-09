@@ -65,7 +65,7 @@ class wiiboard_controller(Node):
 
 	if HAS_WIIBOARD:
 		def _ready(self) -> None:
-			boards = discover_wiiboards(5)
+			boards = discover_wiiboards(1)
 			print(f"Found {len(boards)} wii board(s)")
 			if (boards):
 				self.board_address = boards[0]

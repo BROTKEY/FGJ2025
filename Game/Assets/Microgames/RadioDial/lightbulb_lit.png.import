@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc7121j5hhv05"
-path="res://.godot/imported/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png-b169fb10569fab1a6bddfdcc13f9a5cf.ctex"
+uid="uid://dac0g17fk0s66"
+path="res://.godot/imported/lightbulb_lit.png-0c4c12d0087f65fe8866e1cd96bca60e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Microgames/ShakeMe/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png"
-dest_files=["res://.godot/imported/pngtree-smiling-pixel-water-drop-with-minimalist-outline-on-transparent-background-vector-png-image_16207034.png-b169fb10569fab1a6bddfdcc13f9a5cf.ctex"]
+source_file="res://Assets/Microgames/RadioDial/lightbulb_lit.png"
+dest_files=["res://.godot/imported/lightbulb_lit.png-0c4c12d0087f65fe8866e1cd96bca60e.ctex"]
 
 [params]
 

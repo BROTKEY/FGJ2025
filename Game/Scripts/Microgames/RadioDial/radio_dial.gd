@@ -1,7 +1,7 @@
 extends BaseMicrogame
 
 var deadzone = 3
-var bar_deadzone  = 50
+var bar_deadzone = 80
 
 var target = 0
 var won = false
@@ -15,7 +15,7 @@ func volume_changed(value)-> void:
 	print(value)
 	print(target)
 	print('----------')
-	$Slider.position.x = slider_original_pos + bar_deadzone + (((bar_total_length-bar_deadzone*2)/127)*value) - slider_thiccness/2
+	$Slider.position.x = slider_original_pos-bar_total_length/2.0 + bar_deadzone + (((bar_total_length-bar_deadzone*2)/128.0) * value) -slider_thiccness/2.0
 		
 	if value < target + deadzone and value > target - deadzone:
 		$BulbOn.show()
@@ -39,10 +39,10 @@ func _ready() -> void:
 	
 	InputManager.volume_change.connect(volume_changed)
 	
-	bar_total_length = $Bar.size.x
+	bar_total_length = $Bar.texture.get_width()*$Bar.scale.x
 	slider_original_pos = $Bar.position.x
-	slider_thiccness  = $Slider.size.x
-	$Slider.position.x = slider_original_pos + (((bar_total_length-(bar_deadzone * 2))/127) * InputManager.last_known_volume_value) + bar_deadzone - slider_thiccness/2
+	slider_thiccness  = $Slider.texture.get_width()*$Slider.scale.x
+	$Slider.position.x = slider_original_pos
 
 
 #func get_difficulty() -> float:

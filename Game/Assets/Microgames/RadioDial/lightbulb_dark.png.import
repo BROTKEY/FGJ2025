@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvbsslcvwjl1o"
-path="res://.godot/imported/471-4710170_transparent-diet-coke-bottle-png-coca-cola-pixel.png-9131043fa97aed1fa4988ee6cd22f047.ctex"
+uid="uid://dixw601poathd"
+path="res://.godot/imported/lightbulb_dark.png-14fe956123228f6fdd71fbc0e06e0eee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Microgames/ShakeMe/471-4710170_transparent-diet-coke-bottle-png-coca-cola-pixel.png"
-dest_files=["res://.godot/imported/471-4710170_transparent-diet-coke-bottle-png-coca-cola-pixel.png-9131043fa97aed1fa4988ee6cd22f047.ctex"]
+source_file="res://Assets/Microgames/RadioDial/lightbulb_dark.png"
+dest_files=["res://.godot/imported/lightbulb_dark.png-14fe956123228f6fdd71fbc0e06e0eee.ctex"]
 
 [params]
 
