@@ -6,7 +6,7 @@ from py4godot.classes.Node import Node
 
 import asyncio
 try:
-	from pynecil import Pynecil, CharLive, CharGameJam, discover, CommunicationError, CharSetting
+	from pynecil import Pynecil, CharLive, CharGameJam, discover, CommunicationError, CharSetting, PinecilMenus
 	HAS_PINECIL = True
 except:
 	print("Failed to load the pinecil library")
@@ -32,6 +32,8 @@ class pinecil_bt(Node):
 					print(f"Found Pinecil: {device}")
 					self.pynecil_client = Pynecil(device)
 					self.pinecil_connected = True
+					
+					self.change_menu(PinecilMenus.GameJamHome)
 				else:
 					print("No Pinecil found!")
 
