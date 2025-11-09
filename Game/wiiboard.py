@@ -76,13 +76,15 @@ def discover_wiiboards(duration=6):
 class Wiiboard:
 	def __init__(self, address=None):
 		"""For Windows: address is HID device path"""
+		print("__init__")
 		if WIN:
 			self.controlsocket = WinBT()
 			self.receivesocket = self.controlsocket
 			# self.receivesocket = WinBT()
 		else:
-			self.controlsocket = bluetooth.BluetoothSocket(bluetooth.Protocols.L2CAP)
-			self.receivesocket = bluetooth.BluetoothSocket(bluetooth.Protocols.L2CAP)
+			print("using pybluez")
+			self.controlsocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
+			self.receivesocket = bluetooth.BluetoothSocket(bluetooth.L2CAP)
 		self.calibration = [[1e4]*4]*3
 		self.calibration_requested = False
 		self.calibrated = False
