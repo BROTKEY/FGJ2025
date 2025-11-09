@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpjyg60xuw3s0"]
+
+[ext_resource type="Script" uid="uid://7hedxny5j0g8" path="res://Scripts/Common/device_status_screen.gd" id="1_04wkt"]
+[ext_resource type="Texture2D" uid="uid://diacm8w3se0w3" path="res://Assets/Common/Pinecil.png" id="2_3e55q"]
+[ext_resource type="Texture2D" uid="uid://niluy3lhiovn" path="res://Assets/Common/WiiBoard.png" id="3_57c4v"]
+[ext_resource type="Texture2D" uid="uid://d7eyqypceste" path="res://Assets/Common/MidiKeyboard.png" id="4_c23yj"]
+
+[node name="DeviceStatusScreen" type="Node2D"]
+script = ExtResource("1_04wkt")
+
+[node name="IconsContainer" type="HFlowContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pinecil" type="TextureRect" parent="IconsContainer"]
+layout_mode = 2
+texture = ExtResource("2_3e55q")
+
+[node name="WiiBoard" type="TextureRect" parent="IconsContainer"]
+layout_mode = 2
+texture = ExtResource("3_57c4v")
+
+[node name="MidiKeyboard" type="TextureRect" parent="IconsContainer"]
+layout_mode = 2
+texture = ExtResource("4_c23yj")
