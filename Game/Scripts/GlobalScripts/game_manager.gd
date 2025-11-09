@@ -84,6 +84,7 @@ func start_new_game():
 	_goto_microgame()
 
 
+## Find available micro games
 func scan_for_games() -> Array:
 	var found_games = []
 	print('Scanning MicroGames...')
@@ -102,6 +103,7 @@ func scan_for_games() -> Array:
 	return found_games
 
 
+## Pick 2 micro games with different devices
 func pick_two_games() -> Array:
 	var games = scan_for_games()
 	assert(len(games) > 0, "No available games found!")
@@ -118,6 +120,7 @@ func pick_two_games() -> Array:
 	return [game1, game2]
 
 
+## Pick a random team game (boss game)
 func pick_team_game() -> TeamGame:
 	print('Scanning TeamGames...')
 	var found_games = []
@@ -137,6 +140,7 @@ func pick_team_game() -> TeamGame:
 	return found_games.pick_random()
 
 
+## Reduce lifes and process the remaining lifes
 func _reduce_lifes(amount: int = 1):
 	lifes -= amount
 	print(lifes, " lifes left")
@@ -156,7 +160,9 @@ func _goto_microgame():
 	assert(len(game_types) == 2)
 	current_microgames.clear()
 	for game_type in game_types:
-		current_microgames.append(micro_game_scenes[game_type].instantiate())
+		var game = micro_game_scenes[game_type].instantiate()
+		print(" - ", game.get_game_name())
+		current_microgames.append(game)
 	time_in_microgame = 0.0
 	SceneManager.show_split_screen(current_microgames[0], current_microgames[1])
 	current_state = State.MICROGAME
