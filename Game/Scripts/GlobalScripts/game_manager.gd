@@ -1,6 +1,9 @@
 extends Node
 
 
+const IGNORE_DISCONNECTED_DEVICES = true
+
+
 enum State {
 	MAIN_MENU,
 	INFO_SCREEN,
@@ -53,7 +56,6 @@ var current_state = State.MAIN_MENU
 var num_games_finished = 0
 var lifes = 3
 
-#var available_games: Array[PackedScene] = []
 var current_microgames: Array[BaseMicrogame] = []
 var current_teamgame = null
 
@@ -74,28 +76,16 @@ func reset_stats() -> void:
 	lifes = 3
 
 
-func back_to_menu():
-	SceneManager.show_main_menu()
+## Start a new game with fresh stats
+func start_new_game():
+	reset_stats()
 	current_microgames.clear()
 	current_teamgame = null
-	current_state = State.MAIN_MENU
+	# TODO: go to infoscreen instead
+	_goto_microgame()
 
 
-#func scan_for_games() -> Array[PackedScene]:
-	#available_games.clear()
-	#print('Scanning MicroGames...')
-	#for game_type in game_devices:
-		#var input_device = game_devices[game_type]
-		#print(game_type, ': ', input_device)
-		#if InputManager.is_device_connected(input_device):
-			#print(" -> Available")
-			#available_games.append(micro_game_scenes[game_type])
-		#else:
-			#print(" -> NOT Available")
-	#print("Found ", len(available_games), " available MicroGames")
-	#return available_games
-	
-func scan_for_games() -> Array[MicroGame]:
+func scan_for_games() -> Array:
 	var found_games = []
 	print('Scanning MicroGames...')
 	for game_type in game_devices:
@@ -106,14 +96,16 @@ func scan_for_games() -> Array[MicroGame]:
 			found_games.append(game_type)
 		else:
 			print(" -> NOT Available")
+			if IGNORE_DISCONNECTED_DEVICES:
+				print("   (IGNORE_DISCONNECTED_DEVICES = true, still adding game)")
+				found_games.append(game_type)
 	print("Found ", len(found_games), " available MicroGames")
 	return found_games
 
 
-
-
-func pick_two_games() -> Array[MicroGame]:
+func pick_two_games() -> Array:
 	var games = scan_for_games()
+	assert(len(games) > 0, "No available games found!")
 	var game1 = games.pick_random()
 	var game1_device = game_devices[game1]
 	# Filter out all devices with same device as game1
@@ -138,16 +130,68 @@ func pick_team_game() -> TeamGame:
 			found_games.append(game_type)
 		else:
 			print(" -> NOT Available")
+			if IGNORE_DISCONNECTED_DEVICES:
+				print("   (IGNORE_DISCONNECTED_DEVICES = true, still adding game)")
+				found_games.append(game_type)
 	print("Found ", len(found_games), " available TeamGames")
 	assert(len(found_games) > 0, "No available TeamGames found!")
 	return found_games.pick_random()
 
 
-## Start a new game with fresh stats
-func start_game():
-	# Get available games
-	pass
-	
+func _reduce_lifes(amount: int = 1):
+	lifes -= amount
+	print(lifes, " lifes left")
+	if lifes <= 0:
+		print("Game Over!")
+		# TODO: Game over screen?
+		_goto_main_menu()
+	else:
+		_goto_infoscreen()
+
+
+## Change state to MicroGame
+func _goto_microgame():
+	print("State -> MicroGame")
+	var game_types = pick_two_games()
+	print("Picked two games: ", game_types)
+	assert(len(game_types) == 2)
+	current_microgames.clear()
+	for game_type in game_types:
+		current_microgames.append(micro_game_scenes[game_type].instantiate())
+	time_in_microgame = 0.0
+	SceneManager.show_split_screen(current_microgames[0], current_microgames[1])
+	current_state = State.MICROGAME
+
+
+func _goto_team_game():
+	print("State -> TeamGame")
+	time_in_teamgame = 0.0
+	current_teamgame = null
+	current_state = State.TEAM_GAME
+	# TODO: actual transition
+
+
+func _goto_infoscreen():
+	print("State -> InfoScreen")
+	time_in_infoscreen = 0.0
+	current_state = State.INFO_SCREEN
+	# TODO: actual transition
+
+
+func _goto_preparation():
+	print("State -> PreparationScreen")
+	time_in_preparation = 0.0
+	current_state = State.PREPARATION
+	# TODO: actual transition
+
+
+func _goto_main_menu():
+	print("State -> MainMenu")
+	SceneManager.show_main_menu()
+	current_microgames.clear()
+	current_teamgame = null
+	current_state = State.MAIN_MENU
+	# TODO: end screen?
 
 
 func _process_menu(_delta: float):
@@ -156,21 +200,42 @@ func _process_menu(_delta: float):
 
 func _process_infoscreen(delta: float):
 	time_in_infoscreen += delta
+	if time_in_infoscreen >= DURATION_INFOSCREEN:
+		_goto_preparation()
 
 
 func _process_preparation(delta: float):
 	time_in_preparation += delta
+	if time_in_preparation >= DURATION_PREPARATION:
+		_goto_preparation()
 
 
 func _process_microgame(delta: float):
 	time_in_microgame += delta
 	if time_in_microgame >= DURATION_MICROGAME:
 		print("Time over, ending microgames")
-		on_microgame_end()
+		var won = true
+		for game in current_microgames:
+			won = won and game.get_won()
+		
+		if won:
+			print("All games won")
+		else:
+			print("NOT all games won")
+			_reduce_lifes()
 
 
 func _process_teamgame(delta: float):
 	time_in_teamgame += delta
+	if time_in_teamgame >= DURATION_TEAMGAME:
+		print("Time over, ending team game")
+		if current_teamgame != null:
+			var won = current_teamgame.get_won()
+			if won:
+				print("Team game won")
+			else:
+				print("Team game NOT won")
+				_reduce_lifes()
 
 
 func _process(delta: float) -> void:
@@ -185,21 +250,6 @@ func _process(delta: float) -> void:
 			_process_microgame(delta)
 		State.TEAM_GAME:
 			_process_teamgame(delta)
-
-
-func on_microgame_end():
-	var won = true
-	for game in current_microgames:
-		won = won and game.get_won()
-	
-	if won:
-		print("All games won")
-	else:
-		print("NOT all games won")
-		lifes -= 1
-		print(lifes, " lifes left")
-	
-	if lifes <= 0:
-		print("Game Over!")
-		# TODO: Game over screen?
-		back_to_menu()
+		_:
+			# emergency fallback
+			_goto_main_menu()
