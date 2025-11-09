@@ -35,4 +35,4 @@ func get_game_name() -> String:
 	return 'PopTheBallon'
 
 func get_input_device() -> InputManager.InputDevice:
-	return InputManager.InputDevice.PINECIL
+	return InputManager.InputDevice.WII_BOARD

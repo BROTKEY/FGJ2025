@@ -27,7 +27,7 @@ enum MicroGame {
 	KEYBOARD_REFLEX,
 	RADIO_DIAL,
 	SHAKE_ME,
-	TEAM_PLATFORMER,
+	POP_THE_BALLOON,
 }
 
 enum TeamGame {
@@ -41,6 +41,7 @@ var game_devices = {
 	MicroGame.JUMP: InputManager.InputDevice.WII_BOARD,
 	MicroGame.KEYBOARD_REFLEX: InputManager.InputDevice.MIDI_KEYBOARD,
 	MicroGame.RADIO_DIAL: InputManager.InputDevice.MIDI_KEYBOARD,
+	MicroGame.POP_THE_BALLOON: InputManager.InputDevice.WII_BOARD
 }
 
 var micro_game_scenes = {
@@ -49,6 +50,7 @@ var micro_game_scenes = {
 	MicroGame.JUMP: preload("res://Scenes/Microgames/Jump.tscn"),
 	MicroGame.KEYBOARD_REFLEX: preload("res://Scenes/Microgames/KeyboardReflex.tscn"),
 	MicroGame.RADIO_DIAL: preload("res://Scenes/Microgames/RadioDial.tscn"),
+	MicroGame.POP_THE_BALLOON: preload("res://Scenes/Microgames/PopTheBallon.tscn"),
 }
 
 var micro_game_names = {
@@ -57,6 +59,7 @@ var micro_game_names = {
 	MicroGame.JUMP: "Jump!",
 	MicroGame.KEYBOARD_REFLEX: "Pianist!",
 	MicroGame.RADIO_DIAL: "Radio!",
+	MicroGame.POP_THE_BALLOON: "Pop it!"
 }
 
 var team_game_devices = {
@@ -77,6 +80,7 @@ const game_name_audio_mappings = {
 	MicroGame.KEYBOARD_REFLEX: "KeyboardReflex",
 	MicroGame.RADIO_DIAL: "RadioDial",
 	MicroGame.SHAKE_ME: "ShakeMe",
+	MicroGame.POP_THE_BALLOON: "PopTheBalloon",
 }
 
 var current_state = State.MAIN_MENU
