@@ -21,7 +21,7 @@ func _on_main_menu_pressed() -> void:
 	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamHome)
 
 func _on_temp_adjust_pressed() -> void:
-	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamTemperatureAdjist)
+	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamTemperatureAdjust)
 
 func _on_shake_menu_pressed() -> void:
 	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamShake)
