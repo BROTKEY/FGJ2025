@@ -3,6 +3,8 @@ extends Node2D
 var Pinecil = InputManager.get_node("Pinecil")
 const PinecilMenus = preload("res://Scripts/Common/pinecil_types.gd").PinecilMenus
 
+const main_menu = preload("res://Scenes/MainMenu.tscn")
+
 func _process(_delta: float) -> void:
 	if (Time.get_ticks_msec() % 100) != 0:
 		return
@@ -29,3 +31,6 @@ func _on_shake_menu_pressed() -> void:
 func _on_get_screen_pressed() -> void:
 	var screen = InputManager.get_soldering_iron_screen()
 	print(screen)
+	
+func _on_button_pressed() -> void:
+	SceneManager.set_current_scene(main_menu.instantiate())

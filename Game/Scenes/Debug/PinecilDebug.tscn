@@ -8,7 +8,7 @@ script = ExtResource("1_np4c1")
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-columns = 3
+columns = 10
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer"]
 layout_mode = 2
@@ -36,7 +36,7 @@ layout_mode = 2
 text = "Disconnected"
 horizontal_alignment = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer"]
+[node name="Spacer1" type="VBoxContainer" parent="GridContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
@@ -45,7 +45,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="GridContainer/VBoxContainer"]
 layout_mode = 2
-text = "Menus"
+text = "Pinecil Menus"
 horizontal_alignment = 1
 
 [node name="GetScreen" type="Button" parent="GridContainer/VBoxContainer"]
@@ -64,7 +64,19 @@ text = "Temperature Adjust"
 layout_mode = 2
 text = "Shake"
 
+[node name="Spacer2" type="VBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="GridContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Return to Main Menu"
+
 [connection signal="pressed" from="GridContainer/VBoxContainer/GetScreen" to="." method="_on_get_screen_pressed"]
 [connection signal="pressed" from="GridContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="GridContainer/VBoxContainer/TempAdjust" to="." method="_on_temp_adjust_pressed"]
 [connection signal="pressed" from="GridContainer/VBoxContainer/ShakeMenu" to="." method="_on_shake_menu_pressed"]
+[connection signal="pressed" from="GridContainer/VBoxContainer3/Button" to="." method="_on_button_pressed"]

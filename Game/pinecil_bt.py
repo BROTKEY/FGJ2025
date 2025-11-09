@@ -12,12 +12,13 @@ from py4godot.classes import gdclass
 from py4godot.classes.core import Vector3
 from py4godot.classes.Node import Node
 
-try:
-	from bleak.backends.winrt.util import uninitialize_sta
-	uninitialize_sta()  # undo the unwanted side effect
-except ImportError:
-	# not Windows, so no problem
-	pass
+if WIN:
+	try:
+		from bleak.backends.winrt.util import uninitialize_sta
+		uninitialize_sta()  # undo the unwanted side effect
+	except ImportError:
+		# not Windows, so no problem
+		pass
 
 import asyncio
 try:
