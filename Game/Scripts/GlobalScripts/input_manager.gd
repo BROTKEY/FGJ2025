@@ -30,6 +30,8 @@ signal wii_jump
 signal volume_change
 var last_known_volume_value = 0
 
+signal keystroke
+
 func _ready() -> void:
 	OS.open_midi_inputs()
 	print("MIDI Devices: ", OS.get_connected_midi_inputs())
@@ -47,6 +49,22 @@ func _input(event) -> void:
 		if event.controller_number == 7:
 			last_known_volume_value = event.controller_value
 			volume_change.emit(event.controller_value)
+		
+		if event.message ==9:
+			print(event)
+			keystroke.emit(event.pitch%12, event.velocity != 0)
+			
+
+func _print_midi_info(midi_event):
+	print(midi_event)
+	print("Channel ", midi_event.channel)
+	print("Message ", midi_event.message)
+	print("Pitch ", midi_event.pitch)
+	print("Velocity ", midi_event.velocity)
+	print("Instrument ", midi_event.instrument)
+	print("Pressure ", midi_event.pressure)
+	print("Controller number: ", midi_event.controller_number)
+	print("Controller value: ", midi_event.controller_value)
 
 func _on_wiiboard_jump() -> void:
 	wii_jump.emit()
