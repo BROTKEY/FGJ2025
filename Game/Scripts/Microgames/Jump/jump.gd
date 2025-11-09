@@ -3,8 +3,8 @@ extends BaseMicrogame
 var hurdle_speed_px_p_s = 400
 var player_max_jump_heigth_px =  300
 @export var difficulty = 1.0
-var start_delay_min = 1.0
-var start_delay_max = 3.0
+var start_delay_min = 0.0
+var start_delay_max = 1.0
 var delay
 var time = 0
 var won = true

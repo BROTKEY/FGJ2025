@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ejpp65lqnxm"
-path="res://.godot/imported/png-transparent-hurdling-track-field-hurdle-athletics-track-miscellaneous-angle-furniture-thumbnail.png-65dae109156865ca04d79e557c65831f.ctex"
+uid="uid://dt80d4ujydduj"
+path="res://.godot/imported/jump_wall.png-063c12f0a8231e740e4883078e0e748a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Microgames/Jump/png-transparent-hurdling-track-field-hurdle-athletics-track-miscellaneous-angle-furniture-thumbnail.png"
-dest_files=["res://.godot/imported/png-transparent-hurdling-track-field-hurdle-athletics-track-miscellaneous-angle-furniture-thumbnail.png-65dae109156865ca04d79e557c65831f.ctex"]
+source_file="res://Assets/Microgames/Jump/jump_wall.png"
+dest_files=["res://.godot/imported/jump_wall.png-063c12f0a8231e740e4883078e0e748a.ctex"]
 
 [params]
 
