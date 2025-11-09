@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://Scenes/GlobalScenes/SceneManager.tscn"
 InputManager="*res://Scenes/GlobalScenes/InputManager.tscn"
 AudioManager="*res://Scenes/GlobalScenes/AudioManager.tscn"
+GameManager="*res://Scenes/GlobalScenes/GameManager.tscn"
 
 [editor_plugins]
 
