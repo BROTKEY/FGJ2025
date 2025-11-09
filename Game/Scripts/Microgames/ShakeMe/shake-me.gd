@@ -9,7 +9,7 @@ var won = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	var shake_state = InputManager.get_soldering_iron_shake_state()
-	print(shakes)
+	#print(shakes)
 	
 	#shake down
 	if shake_state <= -1:

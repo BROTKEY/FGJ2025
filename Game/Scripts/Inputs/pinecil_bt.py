@@ -5,7 +5,7 @@ from py4godot.classes.core import Vector3
 from py4godot.classes.Node import Node
 
 import asyncio
-from pynecil import Pynecil, CharLive, discover, CommunicationError
+from pynecil import Pynecil, CharLive, CharGameJam, discover, CommunicationError
 
 @gdclass
 class pinecil_bt(Node):
@@ -34,12 +34,15 @@ class pinecil_bt(Node):
 			except (TimeoutError, CommunicationError):
 				temperature = -1
 		return temperature
-	
-	def get_accelerometer_x(self) -> int:
+		
+	def get_accelerometer_value_x(self) -> int:
 		value = 0
 		if self.pynecil_client != None:
 			try:
-				value = self.loop.run_until_complete(self.pynecil_client.read())
+				value = self.loop.run_until_complete(self.pynecil_client.read(CharGameJam.ACCEL)).x
+			except (TimeoutError, CommunicationError):
+				value = 0
+		return value
 
 	def _exit_tree(self):
 		if self.pynecil_client != None:
