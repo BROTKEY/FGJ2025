@@ -6,6 +6,9 @@ var goal_shakes = 10
 var won = false
 @export var difficulty = 1.0
 
+func _ready() -> void:
+	InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamShake)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	var shake_state = InputManager.get_soldering_iron_shake_state()
@@ -48,3 +51,6 @@ func get_game_name() -> String:
 
 func get_input_device() -> InputManager.InputDevice:
 	return InputManager.InputDevice.PINECIL
+
+func _on_fire_tree_exiting() -> void:
+	InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamHome)

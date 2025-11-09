@@ -11,7 +11,7 @@ var next_sample_time = 0
 var next_screen_check = 0
 
 func _ready() -> void:
-	InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamTemperatureAdjist)
+	InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamTemperatureAdjust)
 	var random_start_temp = randi_range(8,12)*10
 	InputManager.set_soldering_iron_temperature(random_start_temp)
 
@@ -39,8 +39,8 @@ func _process(delta: float) -> void:
 func check_and_set_pinecil_screen():
 	print("Check Screen")
 	var current_screen = InputManager.get_soldering_iron_screen()
-	if current_screen != InputManager.PinecilMenus.GameJamTemperatureAdjist:
-		InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamTemperatureAdjist)
+	if current_screen != InputManager.PinecilMenus.GameJamTemperatureAdjust:
+		InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamTemperatureAdjust)
 
 func get_difficulty() -> float:
 	return difficulty

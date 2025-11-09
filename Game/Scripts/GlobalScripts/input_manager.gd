@@ -21,7 +21,7 @@ const DeviceDisplayNames = {
 	InputDevice.LEAP_MOTION: "Hand Tracker",
 }
 
-const PinecilMenus = preload("res://Scripts/Types/pinecil_types.gd").PinecilMenus
+const PinecilMenus = preload("res://Scripts/Common/pinecil_types.gd").PinecilMenus
 
 
 var test = 0
