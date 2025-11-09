@@ -46,5 +46,5 @@ func get_won() -> bool:
 func get_game_name() -> String:
 	return 'ShakeMe'
 
-func get_input_device() -> InputDevice:
-	return InputDevice.PINECIL
+func get_input_device() -> InputManager.InputDevice:
+	return InputManager.InputDevice.PINECIL

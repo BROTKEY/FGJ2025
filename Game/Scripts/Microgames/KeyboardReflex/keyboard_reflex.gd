@@ -15,5 +15,5 @@ func get_won() -> bool:
 func get_game_name() -> String:
 	return 'KeyboardReflex'
 
-func get_input_device() -> InputDevice:
-	return InputDevice.MIDI_KEYBOARD
+func get_input_device() -> InputManager.InputDevice:
+	return InputManager.InputDevice.MIDI_KEYBOARD

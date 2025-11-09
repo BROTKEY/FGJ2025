@@ -41,5 +41,5 @@ func get_won() -> bool:
 func get_game_name() -> String:
 	return 'Jump'
 
-func get_input_device() -> InputDevice:
-	return InputDevice.WII_BOARD
+func get_input_device() -> InputManager.InputDevice:
+	return InputManager.InputDevice.WII_BOARD

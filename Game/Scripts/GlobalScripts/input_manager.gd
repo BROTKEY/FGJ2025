@@ -1,5 +1,17 @@
 extends Node
 
+
+enum InputDevice {
+	NONE,
+	KEYBOARD,
+	MOUSE,
+	PINECIL,
+	MIDI_KEYBOARD,
+	WII_BOARD,
+	LEAP_MOTION
+}
+
+
 var test = 0
 signal wii_jump
 
@@ -26,6 +38,43 @@ func _input(event) -> void:
 
 func _on_wiiboard_jump() -> void:
 	wii_jump.emit()
+
+
+## Check if a Device is generally available (i.e., if the required libs are installed)
+func is_device_available(device: InputDevice) -> bool:
+	match device:
+		InputDevice.NONE:
+			return false
+		InputDevice.KEYBOARD, InputDevice.MOUSE, InputDevice.MIDI_KEYBOARD:
+			return true
+		InputDevice.PINECIL:
+			return $Pinecil != null and $Pinecil.pinecil_lib_loaded
+		InputDevice.WII_BOARD:
+			return $WiiboardController != null and $WiiboardController.wiiboard_lib_loaded
+		InputDevice.LEAP_MOTION:
+			return false
+		_:
+			return false
+
+
+## Check if a Device is currently connected and ready to use
+func is_device_connected(device: InputDevice):
+	match device:
+		InputDevice.NONE:
+			return false
+		InputDevice.KEYBOARD, InputDevice.MOUSE:
+			return true
+		InputDevice.MIDI_KEYBOARD:
+			return len(OS.get_connected_midi_inputs()) > 0
+		InputDevice.PINECIL:
+			return $Pinecil != null and $Pinecil.pinecil_connected
+		InputDevice.WII_BOARD:
+			return $WiiboardController != null and $WiiboardController.board_connected
+		InputDevice.LEAP_MOTION:
+			return false
+		_:
+			return false
+
 
 func get_soldering_iron_temprature() -> int:
 	var temperature = 0

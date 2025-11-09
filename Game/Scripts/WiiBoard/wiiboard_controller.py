@@ -26,6 +26,8 @@ class WeightMeasurement:
 
 @gdclass
 class wiiboard_controller(Node):
+	wiiboard_lib_loaded = HAS_WIIBOARD
+
 	jump = signal()
 
 	## Minimum difference between min and max weight spikes required to trigger
@@ -71,7 +73,7 @@ class wiiboard_controller(Node):
 		self.weights = self.board.corners
 		self._process_jump()
 
-	
+
 	def _process_jump(self):
 		time_point = time.time()
 		if time_point > self._jump_timeout:
@@ -91,8 +93,8 @@ class wiiboard_controller(Node):
 
 	def get_weights(self) -> Vector4:
 		return Vector4.new3(*self.weights.values())
-	
-	
+
+
 	def get_center_of_mass(self):
 		corners = list(self.weights.values())
 		x = corners[0] + corners[1] - corners[2] - corners[3]
