@@ -1,6 +1,6 @@
 extends Node
 
-
+## Set to true in order to include all games, even if their devices are not connected
 const IGNORE_DISCONNECTED_DEVICES = true
 
 const DURATION_MICROGAME = 5.0

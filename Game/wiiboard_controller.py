@@ -7,7 +7,7 @@ import time
 from threading import Thread
 
 try:
-	from .wiiboard import Wiiboard, discover_wiiboards
+	from wiiboard import Wiiboard, discover_wiiboards
 	HAS_WIIBOARD = True
 except:
 	print("Failed to load the wiiboard library")
