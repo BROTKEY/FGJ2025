@@ -9,6 +9,9 @@ const DURATION_INFOSCREEN = 2.5 # TODO: increase
 const DURATION_PREPARATION = 2.5 # TODO: increase
 
 
+const TEAM_GAME_EVERY_N_GAMES = 5
+
+
 enum State {
 	MAIN_MENU,
 	INFO_SCREEN,

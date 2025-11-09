@@ -14,13 +14,6 @@ from threading import Thread
 
 try:
 	from wiiboard import Wiiboard, discover_wiiboards
-	try:
-		from bleak.backends.winrt.util import uninitialize_sta
-
-		uninitialize_sta()  # undo the unwanted side effect
-	except ImportError:
-		# not Windows, so no problem
-		pass
 	HAS_WIIBOARD = True
 except:
 	print("Failed to load the wiiboard library")
@@ -30,6 +23,13 @@ except:
 		pass
 	HAS_WIIBOARD = False
 
+if WIN:
+	try:
+		from bleak.backends.winrt.util import uninitialize_sta
+		uninitialize_sta()  # undo the unwanted side effect
+	except ImportError:
+		# not Windows, so no problem
+		pass
 
 class WeightMeasurement:
 	def __init__(self, timepoint: float, weight: float):
