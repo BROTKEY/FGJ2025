@@ -8,7 +8,7 @@ var org_play_pos = Vector2(0,0)
 func ballon_poped() -> void:
 	if !won:
 		$Ballon/Particels.emitting=true
-		$Ballon/ColorRect.hide()
+		$Ballon/Ballon2.hide()
 	won=true
 
 # Called when the node enters the scene tree for the first time.
@@ -32,7 +32,7 @@ func get_won() -> bool:
 	return won
 
 func get_game_name() -> String:
-	return 'FryMeUp'
+	return 'PopTheBallon'
 
 func get_input_device() -> InputManager.InputDevice:
 	return InputManager.InputDevice.PINECIL

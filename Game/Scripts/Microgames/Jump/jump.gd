@@ -27,7 +27,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time += delta
 	if time > delay:
-		$Hurdle.position -= Vector2(delta*5*difficulty,0)
+		$Hurdle.position -= Vector2(delta*200*difficulty,0)
 
 func get_difficulty() -> float:
 	return difficulty
