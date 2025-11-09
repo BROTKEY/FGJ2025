@@ -123,7 +123,7 @@ func get_soldering_iron_shake_state() -> float:
 	var shake_state = 0
 	
 	var pinecil_accel_value = $Pinecil.get_accelerometer_value_x()
-	if abs(pinecil_accel_value) > 20000:
+	if abs(pinecil_accel_value) > 5000:
 		shake_state = pinecil_accel_value / abs(pinecil_accel_value)
 	
 	if Input.is_action_pressed('Up'):

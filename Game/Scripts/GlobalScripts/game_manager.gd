@@ -9,7 +9,7 @@ const DURATION_INFOSCREEN = 2.5 # TODO: increase
 const DURATION_PREPARATION = 2.5 # TODO: increase
 
 
-const TEAM_GAME_EVERY_N_GAMES = 2
+const TEAM_GAME_EVERY_N_GAMES = 5
 
 
 enum State {
@@ -293,6 +293,7 @@ func _process_teamgame(delta: float):
 			var won = current_teamgame.get_won()
 			if won:
 				print("Team game won")
+				num_games_finished += 1
 				_goto_infoscreen()
 			else:
 				print("Team game NOT won")
