@@ -6,12 +6,11 @@ from py4godot.classes.Node import Node
 
 import asyncio
 try:
-	from pynecil import Pynecil, CharLive, CharGameJam, discover, CommunicationError
+	from pynecil import Pynecil, CharLive, CharGameJam, discover, CommunicationError, PinecilMenus
 	HAS_PINECIL = True
 except:
 	print("Failed to load the pinecil library")
 	HAS_PINECIL = False
-
 
 @gdclass
 class pinecil_bt(Node):
@@ -20,6 +19,8 @@ class pinecil_bt(Node):
 
 	pynecil_client = None
 	loop = None
+
+	MENUS = {menu.name: menu.value for menu in PinecilMenus}
 
 	def _ready(self) -> None:
 		if HAS_PINECIL:
@@ -40,7 +41,8 @@ class pinecil_bt(Node):
 		if self.pynecil_client is not None:
 			try:
 				temperature = self.loop.run_until_complete(self.pynecil_client.read(CharLive.SETPOINT_TEMP))
-			except (TimeoutError, CommunicationError):
+			except (TimeoutError, CommunicationError) as e:
+				print("Pynecil Error: {}".format(e))
 				temperature = -1
 		return temperature
 
@@ -49,9 +51,29 @@ class pinecil_bt(Node):
 		if self.pynecil_client is not None:
 			try:
 				value = self.loop.run_until_complete(self.pynecil_client.read(CharGameJam.ACCEL)).x
-			except (TimeoutError, CommunicationError):
+			except (TimeoutError, CommunicationError) as e:
+				print("Pynecil Error: {}".format(e))
 				value = 0
 		return value
+	
+	def get_current_menu(self) -> PinecilMenus:
+		menu = None
+		if self.pynecil_client is not None:
+			try:
+				menu = self.loop.run_until_complete(self.pynecil_client.read(CharGameJam.MENU))
+			except (TimeoutError, CommunicationError) as e:
+				print("Pynecil Error: {}".format(e))
+		return menu
+
+	
+	def change_menu(self, menu: PinecilMenus) -> bool:
+		if self.pynecil_client is not None:
+			try:
+				self.loop.run_until_complete(self.pynecil_client.write(CharGameJam.MENU, menu))
+				return True
+			except (TimeoutError, CommunicationError) as e:
+				print("Pynecil Error: {}".format(e))
+		return False
 
 	def _exit_tree(self):
 		if self.pynecil_client is not None:

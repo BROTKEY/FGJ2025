@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://eadt5k6jscf7"]
+[gd_scene load_steps=5 format=3 uid="uid://eadt5k6jscf7"]
 
 [ext_resource type="Script" uid="uid://dwjl3memqhym1" path="res://Scripts/GlobalScripts/input_manager.gd" id="1_vobp1"]
 [ext_resource type="Script" path="res://Scripts/WiiBoard/wiiboard_controller.py" id="2_lci8e"]
 [ext_resource type="Script" path="res://Scripts/Inputs/pinecil_bt.py" id="3_025xc"]
+[ext_resource type="Script" uid="uid://duvb46fey3dwv" path="res://Scripts/Types/pinecil_types.gd" id="4_asfg7"]
 
 [node name="InputManager" type="Node2D"]
 script = ExtResource("1_vobp1")
@@ -36,3 +37,6 @@ editor_description = ""
 script = ExtResource("3_025xc")
 pinecil_lib_loaded = false
 pinecil_connected = false
+
+[node name="PinecilTypes" type="Node" parent="."]
+script = ExtResource("4_asfg7")
