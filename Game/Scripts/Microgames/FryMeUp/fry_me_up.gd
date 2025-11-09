@@ -3,7 +3,7 @@ extends BaseMicrogame
 var cooked_chicken = preload("res://Assets/Microgames/FryMeUp/Cooked_Chicken_JE3_BE3.png")
 var cooking_percentage = 0
 var won = false
-@export var cooking_time_s = 1
+@export var cooking_time_s = 0.1
 @export var difficulty = 1.0
 @export var pinecil_sample_rate_hz = 100
 
