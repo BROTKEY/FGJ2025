@@ -4,6 +4,7 @@ extends Node
 @onready var audio_player_game_base = $AudioPlayerGameBase
 @onready var audio_player_game_left = $AudioPlayerGameLeft
 @onready var audio_player_game_right = $AudioPlayerGameRight
+@onready var audio_player_white_noise = $AudioPlayerWhiteNoise
 
 var music_game_base: Resource = preload("uid://vjvld7qv7vn1")
 var music_game_fry_me_up: Resource = preload("uid://77kdkjhmbocw")
@@ -44,6 +45,7 @@ func stop_music() -> void:
 	audio_player_game_base.stop()
 	audio_player_game_left.stop()
 	audio_player_game_right.stop()
+	audio_player_white_noise.stop()
 
 func play_menu() -> void:
 	print("Starting menu music")
@@ -56,6 +58,13 @@ func play_game(game_name_left: String, game_name_right: String) -> void:
 	audio_player_game_base.stream = music_game_base
 	audio_player_game_left.stream = audio_microgames_games.get(game_name_left, null)
 	audio_player_game_right.stream = audio_microgames_games.get(game_name_right, null)
+	
+	if (game_name_left == "RadioDial" or game_name_right == "RadioDial"):
+		enable_white_noise_level(true)
+		audio_player_white_noise.play()
+	else:
+		enable_white_noise_level(false)
+	
 	audio_player_game_base.play()
 	audio_player_game_left.play()
 	audio_player_game_right.play()
@@ -76,8 +85,23 @@ func play_game_boss() -> void:
 	audio_player_game_base.stream = music_game_boss
 	audio_player_game_base.play()
 	
-func play_transition_boss() -> void:
-	print("Starting transition boss music")
+func play_transition_base() -> void:
+	print("Starting transition music")
 	stop_music()
 	audio_player_game_base.stream = music_transition_base
 	audio_player_game_base.play()
+
+func enable_white_noise_level(active: bool) -> void:
+	#var bus_white_noise = AudioServer.get_bus_index("White Noise")
+	#var bus_music = AudioServer.get_bus_index("Music")
+	#print(AudioServer.get_bus_volume_db(bus_music))
+	
+	#var max_db = 10
+	
+	if (active):
+		pass
+		#AudioServer.set_bus_volume_db(bus_music, max_db)
+	else:
+		#AudioServer.set_bus_volume_db(bus_music, 2)
+		audio_player_white_noise.stop();
+		

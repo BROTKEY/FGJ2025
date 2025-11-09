@@ -208,7 +208,7 @@ func _goto_infoscreen():
 	print("State -> InfoScreen")
 	time_in_infoscreen = 0.0
 	SceneManager.set_current_scene(scene_infoscreen.instantiate())
-	AudioManager.play_transition("BASE", "BASE")
+	AudioManager.play_transition_base()
 	current_state = State.INFO_SCREEN
 
 
