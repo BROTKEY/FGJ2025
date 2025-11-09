@@ -4,7 +4,7 @@ var Pinecil = InputManager.get_node("Pinecil")
 const PinecilMenus = preload("res://Scripts/Types/pinecil_types.gd").PinecilMenus
 
 func _process(_delta: float) -> void:
-	if !(Time.get_ticks_msec() % 100):
+	if (Time.get_ticks_msec() % 100) != 0:
 		return
 		
 	var lib_status = "Missing"
