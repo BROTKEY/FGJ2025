@@ -57,5 +57,5 @@ func get_game_name() -> String:
 func get_input_device() -> InputManager.InputDevice:
 	return InputManager.InputDevice.PINECIL
 
-func _on_fire_tree_exiting() -> void:
+func _on_tree_exiting() -> void:
 	InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamHome)
