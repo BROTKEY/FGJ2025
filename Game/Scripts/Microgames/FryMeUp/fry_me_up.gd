@@ -5,12 +5,22 @@ var cooking_percentage = 0
 var won = false
 @export var cooking_time_s = 1
 @export var difficulty = 1.0
+@export var pinecil_sample_rate_hz = 100
+
+var next_sample_time = 0
+var next_screen_check = 0
+
+func _ready() -> void:
+	InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamTemperatureAdjist)
+	var random_start_temp = randi_range(8,12)*10
+	InputManager.set_soldering_iron_temperature(random_start_temp)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (Time.get_ticks_msec() % 50) == 0: # Wait a bit between check to avoid BT Lags
-		if (Time.get_ticks_msec() % 250) == 0:
+	if Time.get_ticks_msec() >= next_sample_time: # Wait a bit between check to avoid BT Lags
+		if (Time.get_ticks_msec() >= next_screen_check) and false: # Lags too much
 			check_and_set_pinecil_screen()
+			next_screen_check = Time.get_ticks_msec() + 500 # Check if the Pinecil is on the correct Screen every 500ms
 			
 		if InputManager.get_soldering_iron_temprature() >= 180:
 			if !won:
@@ -18,6 +28,8 @@ func _process(delta: float) -> void:
 			$Fire.show()
 		else:
 			$Fire.hide()
+		
+		next_sample_time = Time.get_ticks_msec() + (1000/pinecil_sample_rate_hz)
 			
 	if cooking_percentage >= 1 and !won:
 		$Chicken.texture = cooked_chicken
@@ -25,8 +37,10 @@ func _process(delta: float) -> void:
 		won = true
 
 func check_and_set_pinecil_screen():
-	if InputManager.get_soldering_iron_screen() != InputManager.PinecilMenus.GameJamHome:
-		InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamHome)
+	print("Check Screen")
+	var current_screen = InputManager.get_soldering_iron_screen()
+	if current_screen != InputManager.PinecilMenus.GameJamTemperatureAdjist:
+		InputManager.set_soldering_iron_screen(InputManager.PinecilMenus.GameJamTemperatureAdjist)
 
 func get_difficulty() -> float:
 	return difficulty

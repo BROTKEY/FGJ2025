@@ -106,6 +106,9 @@ func get_soldering_iron_screen():
 func set_soldering_iron_screen(screen: PinecilMenus):
 	$Pinecil.change_menu(screen)
 
+func set_soldering_iron_temperature(temperature: int):
+	$Pinecil.set_temperature(temperature)
+
 func get_wii_jump() -> float:
 	# TODO: remove
 	if Input.is_action_pressed('Space'):
