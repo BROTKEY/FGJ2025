@@ -11,6 +11,8 @@ enum InputDevice {
 	LEAP_MOTION
 }
 
+const PinecilMenus = preload("res://Scripts/Types/pinecil_types.gd").PinecilMenus
+
 
 var test = 0
 signal wii_jump
@@ -99,6 +101,9 @@ func get_soldering_iron_shake_state() -> float:
 	if Input.is_action_pressed('Down'):
 		shake_state = -1 
 	return shake_state
+
+func set_soldering_iron_screen(screen: PinecilMenus):
+	pass
 
 func get_wii_jump() -> float:
 	# TODO: remove

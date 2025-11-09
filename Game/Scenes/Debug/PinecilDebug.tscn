@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvlknuy5geypa"]
+
+[ext_resource type="Script" uid="uid://bnqye8vp48m25" path="res://Scripts/Inputs/pinecil_debug.gd" id="1_np4c1"]
+
+[node name="PinecilDebug" type="Node2D"]
+script = ExtResource("1_np4c1")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Pinecil Lib"
+horizontal_alignment = 1
+
+[node name="PinecilLibStatus" type="Label" parent="GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Missing"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="GridContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Pinecil  Connected"
+horizontal_alignment = 1
+
+[node name="PinecilConnected" type="Label" parent="GridContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Disconnected"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menus"
+horizontal_alignment = 1
+
+[node name="MainMenu" type="Button" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="TempAdjust" type="Button" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Temperature Adjust"
+
+[node name="ShakeMenu" type="Button" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shake"
+
+[connection signal="pressed" from="GridContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="GridContainer/VBoxContainer/TempAdjust" to="." method="_on_temp_adjust_pressed"]
+[connection signal="pressed" from="GridContainer/VBoxContainer/ShakeMenu" to="." method="_on_shake_menu_pressed"]
