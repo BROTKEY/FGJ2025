@@ -1,7 +1,7 @@
 extends Node2D
 
 var Pinecil = InputManager.get_node("Pinecil")
-const PinecilMenus = preload("res://Scripts/Types/pinecil_types.gd").PinecilMenus
+const PinecilMenus = preload("res://Scripts/Common/pinecil_types.gd").PinecilMenus
 
 func _process(_delta: float) -> void:
 	if (Time.get_ticks_msec() % 100) != 0:
@@ -21,7 +21,7 @@ func _on_main_menu_pressed() -> void:
 	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamHome)
 
 func _on_temp_adjust_pressed() -> void:
-	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamTemperatureAdjist)
+	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamTemperatureAdjust)
 
 func _on_shake_menu_pressed() -> void:
 	InputManager.set_soldering_iron_screen(PinecilMenus.GameJamShake)
