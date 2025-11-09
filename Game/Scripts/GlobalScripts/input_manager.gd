@@ -23,7 +23,7 @@ const DeviceDisplayNames = {
 
 const PinecilMenus = preload("res://Scripts/Common/pinecil_types.gd").PinecilMenus
 
-#const pinecil_debugger = preload("res://Scenes/Debug/PinecilDebug.tscn")
+const pinecil_debugger = preload("res://Scenes/Debug/PinecilDebug.tscn")
 
 var test = 0
 signal wii_jump
@@ -55,9 +55,9 @@ func _input(event) -> void:
 			print(event)
 			keystroke.emit(event.pitch%12, event.velocity != 0)
 	
-	elif event.as_text() == "PinecilDbg":
-		pass
-		#SceneManager.set_current_scene(pinecil_debugger.instantiate())
+	elif event is InputEventKey:
+		if event.keycode == 80: # 'P'
+			SceneManager.set_current_scene(pinecil_debugger.instantiate())
 
 func _print_midi_info(midi_event):
 	print(midi_event)
