@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://crttv07c0deek"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://drw82nv784mq8"]
 
 [sub_resource type="AudioEffectEQ" id="AudioEffectEQ_j3pel"]
 resource_name = "EQ"
@@ -23,7 +23,7 @@ bus/1/name = &"White Noise"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = -19.66827
 bus/1/send = &"Master"
 bus/2/name = &"Music"
 bus/2/solo = false
