@@ -39,7 +39,7 @@ offset_bottom = 648.0
 color = Color(0.9512375, 0.73560774, 0.7692792, 1)
 
 [node name="Hurdle" type="Area2D" parent="."]
-position = Vector2(1848, 1053)
+position = Vector2(1668, 1053)
 
 [node name="PngTransparentHurdlingTrackFieldHurdleAthleticsTrackMiscellaneousAngleFurnitureThumbnail" type="Sprite2D" parent="Hurdle"]
 position = Vector2(-621, -464)
