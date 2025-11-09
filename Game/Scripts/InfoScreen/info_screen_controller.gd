@@ -11,6 +11,5 @@ func _process(_delta: float) -> void:
 	var max_time = GameManager.DURATION_INFOSCREEN
 	var time = GameManager.time_in_infoscreen
 	var dt = max_time - time
-	print(dt)
 	var secs_left = int(ceil(dt))
 	$AspectRatioContainer/MarginContainer/VBoxContainer/CountDown.text = str(secs_left)
