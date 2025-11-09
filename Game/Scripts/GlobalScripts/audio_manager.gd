@@ -30,6 +30,7 @@ var audio_microgames_games: Dictionary[String, Resource] = {
 }
 
 var audio_microgames_transitions: Dictionary[String, Resource] = {
+	"BASE": music_transition_base,
 	"FryMeUp": music_transition_fry_me_up,
 	"Jump": music_transition_jump,
 	"KeyboardReflex": music_transition_keyboard_reflex,

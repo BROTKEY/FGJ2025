@@ -5,8 +5,8 @@ const IGNORE_DISCONNECTED_DEVICES = true
 
 const DURATION_MICROGAME = 5.0
 const DURATION_TEAMGAME = 10.0
-const DURATION_INFOSCREEN = 3.0 # TODO: increase
-const DURATION_PREPARATION = 1.0 # TODO: increase
+const DURATION_INFOSCREEN = 2.5 # TODO: increase
+const DURATION_PREPARATION = 2.5 # TODO: increase
 
 
 enum State {
@@ -66,6 +66,14 @@ var team_game_scenes = {
 
 var team_game_names = {
 	TeamGame.TEAM_PLATFORMER: "Mind the Gap!"
+}
+
+const game_name_audio_mappings = {
+	MicroGame.FRY_ME_UP: "FryMeUp",
+	MicroGame.JUMP: "Jump",
+	MicroGame.KEYBOARD_REFLEX: "KeyboardReflex",
+	MicroGame.RADIO_DIAL: "RadioDial",
+	MicroGame.SHAKE_ME: "ShakeMe",
 }
 
 var current_state = State.MAIN_MENU
@@ -172,12 +180,17 @@ func _goto_microgame():
 	print("State -> MicroGame")
 	assert(len(next_ugames) == 2)
 	current_microgames.clear()
+	
+	var audio_name_l = game_name_audio_mappings[next_ugames[0]]
+	var audio_name_r = game_name_audio_mappings[next_ugames[1]]
+	
 	for game_type in next_ugames:
 		var game = micro_game_scenes[game_type].instantiate()
 		print(" - ", game.get_game_name())
 		current_microgames.append(game)
 	time_in_microgame = 0.0
 	SceneManager.show_split_screen(current_microgames[0], current_microgames[1])
+	AudioManager.play_game(audio_name_l, audio_name_r)
 	current_state = State.MICROGAME
 
 
@@ -195,18 +208,24 @@ func _goto_infoscreen():
 	print("State -> InfoScreen")
 	time_in_infoscreen = 0.0
 	SceneManager.set_current_scene(scene_infoscreen.instantiate())
+	AudioManager.play_transition("BASE", "BASE")
 	current_state = State.INFO_SCREEN
 
 
 func _goto_preparation():
 	print("State -> PreparationScreen")
+	time_in_preparation = 0.0
 	
 	next_ugames = pick_two_games()
 	assert(len(next_ugames) == 2)
 	print("Picked two games: ", next_ugames)
 	
-	time_in_preparation = 0.0
+	var audio_name_l = game_name_audio_mappings[next_ugames[0]]
+	var audio_name_r = game_name_audio_mappings[next_ugames[1]]
+	
 	SceneManager.set_current_scene(scene_preparation.instantiate())
+	AudioManager.play_transition(audio_name_l, audio_name_r)
+	
 	current_state = State.PREPARATION
 
 
@@ -245,6 +264,7 @@ func _process_microgame(delta: float):
 		
 		if won:
 			print("All games won")
+			_goto_infoscreen()
 		else:
 			print("NOT all games won")
 			_reduce_lifes()
@@ -258,6 +278,7 @@ func _process_teamgame(delta: float):
 			var won = current_teamgame.get_won()
 			if won:
 				print("Team game won")
+				_goto_infoscreen()
 			else:
 				print("Team game NOT won")
 				_reduce_lifes()
