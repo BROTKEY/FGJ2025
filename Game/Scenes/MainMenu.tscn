@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dignhgswecofw"]
 
-[ext_resource type="Script" uid="uid://dgt0d3dqhtc5k" path="res://Scripts/MainMenu/main_menu.gd" id="1_8saeu"]
+[ext_resource type="Script" path="res://Scripts/MainMenu/main_menu.gd" id="1_8saeu"]
 [ext_resource type="Script" uid="uid://bpawwj5nd3yet" path="res://Scripts/MainMenu/main_menu_control.gd" id="1_853f1"]
 [ext_resource type="Theme" uid="uid://bji6fxuxjgtkk" path="res://Ui/Themes/MainTheme.tres" id="2_8saeu"]
-[ext_resource type="PackedScene" uid="uid://bpjyg60xuw3s0" path="res://Scenes/Common/DeviceStatusScreen.tscn" id="4_ghw46"]
+[ext_resource type="PackedScene" path="res://Scenes/Common/DeviceStatusScreen.tscn" id="4_ghw46"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,6 +13,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8saeu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0.6862745, 0.24313726, 0.24313726, 1)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
