@@ -3,6 +3,11 @@ extends Node
 
 const IGNORE_DISCONNECTED_DEVICES = true
 
+const DURATION_MICROGAME = 5.0
+const DURATION_TEAMGAME = 10.0
+const DURATION_INFOSCREEN = 3.0 # TODO: increase
+const DURATION_PREPARATION = 1.0 # TODO: increase
+
 
 enum State {
 	MAIN_MENU,
@@ -63,12 +68,6 @@ var time_in_infoscreen: float = 0.0
 var time_in_preparation: float = 0.0
 var time_in_microgame: float = 0.0
 var time_in_teamgame: float = 0.0
-
-
-const DURATION_MICROGAME = 5.0
-const DURATION_TEAMGAME = 10.0
-const DURATION_INFOSCREEN = 5.0
-const DURATION_PREPARATION = 3.0
 
 
 func reset_stats() -> void:
@@ -207,7 +206,7 @@ func _process_infoscreen(delta: float):
 func _process_preparation(delta: float):
 	time_in_preparation += delta
 	if time_in_preparation >= DURATION_PREPARATION:
-		_goto_preparation()
+		_goto_microgame()
 
 
 func _process_microgame(delta: float):
