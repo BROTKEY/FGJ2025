@@ -13,8 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w4pd2")
 
-[node name="InfoScreenController" type="Node" parent="."]
-
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15

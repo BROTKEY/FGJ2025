@@ -70,6 +70,7 @@ var time_in_microgame: float = 0.0
 var time_in_teamgame: float = 0.0
 
 const scene_infoscreen = preload("res://Scenes/InfoScreen.tscn")
+const scene_preparation = preload("res://Scenes/Common/PreparationScreen.tscn")
 
 func reset_stats() -> void:
 	num_games_finished = 0
@@ -121,7 +122,7 @@ func pick_two_games() -> Array:
 
 
 ## Pick a random team game (boss game)
-func pick_team_game() -> TeamGame:
+func pick_team_game():
 	print('Scanning TeamGames...')
 	var found_games = []
 	for game_type in team_game_devices:
@@ -171,9 +172,11 @@ func _goto_microgame():
 func _goto_team_game():
 	print("State -> TeamGame")
 	time_in_teamgame = 0.0
-	current_teamgame = null
+	var game_type = pick_team_game()
+	current_teamgame = team_game_scenes[game_type].instantiate()
+	print("Picked TeamGame: ", current_teamgame.get_game_name())
+	SceneManager.set_current_scene(current_teamgame)
 	current_state = State.TEAM_GAME
-	# TODO: actual transition
 
 
 func _goto_infoscreen():
@@ -181,14 +184,13 @@ func _goto_infoscreen():
 	time_in_infoscreen = 0.0
 	SceneManager.set_current_scene(scene_infoscreen.instantiate())
 	current_state = State.INFO_SCREEN
-	# TODO: actual transition
 
 
 func _goto_preparation():
 	print("State -> PreparationScreen")
 	time_in_preparation = 0.0
+	SceneManager.set_current_scene(scene_preparation.instantiate())
 	current_state = State.PREPARATION
-	# TODO: actual transition
 
 
 func _goto_main_menu():

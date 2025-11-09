@@ -11,6 +11,16 @@ enum InputDevice {
 	LEAP_MOTION
 }
 
+const DeviceDisplayNames = {
+	InputDevice.NONE: "None",
+	InputDevice.KEYBOARD: "Keyboard",
+	InputDevice.MOUSE: "Mouse",
+	InputDevice.PINECIL: "Pinecil",
+	InputDevice.MIDI_KEYBOARD: "MIDI Keyboard",
+	InputDevice.WII_BOARD: "Wii Fit BalanceBoard",
+	InputDevice.LEAP_MOTION: "Hand Tracker",
+}
+
 const PinecilMenus = preload("res://Scripts/Types/pinecil_types.gd").PinecilMenus
 
 

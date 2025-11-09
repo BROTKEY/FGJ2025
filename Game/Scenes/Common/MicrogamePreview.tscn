@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://30m67t8gsa6m"]
+
+[ext_resource type="Script" uid="uid://crna88i1j2ca3" path="res://Scripts/Common/microgame_preview.gd" id="1_jwwuw"]
+[ext_resource type="Theme" uid="uid://bji6fxuxjgtkk" path="res://Ui/Themes/MainTheme.tres" id="2_k0auk"]
+
+[node name="MicrogamePreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwwuw")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_k0auk")
+alignment = 1
+
+[node name="GameTitle" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k0auk")
+theme_override_font_sizes/font_size = 64
+text = "Game Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeviceName" type="Label" parent="AspectRatioContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Device Name"
+horizontal_alignment = 1
