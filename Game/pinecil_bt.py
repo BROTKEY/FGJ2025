@@ -60,7 +60,7 @@ class pinecil_bt(Node):
 	
 	def disconnect_device(self):
 		if self.pynecil_client is not None:
-			self.pynecil_client.disconnect()
+			self.loop.run_until_complete(self.pynecil_client.disconnect())
 			self.pynecil_client = None
 			self.pinecil_connected = False
 
