@@ -51,13 +51,13 @@ func _ready() -> void:
 		$Indicators.add_child(rect, true)
 	
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var elap_time = Time.get_ticks_msec() - start_time
 	
 	for i in range(len(song)):
 		var pos = (elap_time - song[i]["timestamp"]) * note_jump_offset_mult + hitline - 60
 		
-		var test = "Indicators/ColorRect%s" % ("" if i == 0 else i+1)
+		var test = "Indicators/ColorRect%s" % ("" if i == 0 else str(i+1))
 		
 		var indicator = get_node(test) as ColorRect
 		indicator.position.y = pos

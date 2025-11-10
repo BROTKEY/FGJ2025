@@ -18,7 +18,7 @@ func _ready() -> void:
 	$Ballon.popped.connect(ballon_poped)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var posmod = InputManager.get_wii_center_of_mass()*2
 	$Player.position = Vector2(org_play_pos.x + posmod.x, org_play_pos.y + posmod.y)
 

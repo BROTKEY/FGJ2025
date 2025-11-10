@@ -49,6 +49,7 @@ func _input(event) -> void:
 	if event is InputEventMIDI:
 		if event.controller_number == 7:
 			last_known_volume_value = event.controller_value
+			#print('volume = ', last_known_volume_value)
 			volume_change.emit(event.controller_value)
 		
 		if event.message ==9:

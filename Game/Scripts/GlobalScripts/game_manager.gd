@@ -35,6 +35,17 @@ enum TeamGame {
 }
 
 
+## All available micro games
+const micro_games = [
+	MicroGame.FRY_ME_UP,
+	MicroGame.JUMP,
+	MicroGame.KEYBOARD_REFLEX,
+	MicroGame.RADIO_DIAL,
+	MicroGame.SHAKE_ME,
+	MicroGame.POP_THE_BALLOON,
+]
+
+
 var game_devices = {
 	MicroGame.FRY_ME_UP: InputManager.InputDevice.PINECIL,
 	MicroGame.SHAKE_ME: InputManager.InputDevice.PINECIL,
@@ -118,7 +129,9 @@ func start_new_game():
 func scan_for_games() -> Array:
 	var found_games = []
 	print('Scanning MicroGames...')
-	for game_type in game_devices:
+	for game_type in micro_games:
+		if game_type not in game_devices:
+			continue
 		var input_device = game_devices[game_type]
 		print(game_type, ': ', input_device)
 		if InputManager.is_device_connected(input_device):

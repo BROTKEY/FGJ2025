@@ -15,6 +15,7 @@ func set_current_scene(scene: Node):
 	tree.root.add_child(scene)
 	tree.current_scene = scene
 	tree.root.remove_child(old_scene)
+	old_scene.queue_free()
 
 
 func show_main_menu() -> MainMenu:

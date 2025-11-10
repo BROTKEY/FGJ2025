@@ -10,9 +10,13 @@ script = ExtResource("1_vobp1")
 
 [node name="WiiboardController" type="Node" parent="."]
 _import_path = NodePath("")
+unique_name_in_owner = false
 process_mode = 0
+process_priority = 0
 process_physics_priority = 0
+process_thread_group = 0
 physics_interpolation_mode = 0
+auto_translate_mode = 0
 editor_description = ""
 script = ExtResource("2_lci8e")
 wiiboard_lib_loaded = true
@@ -22,9 +26,13 @@ board_address = ""
 
 [node name="Pinecil" type="Node" parent="."]
 _import_path = NodePath("")
+unique_name_in_owner = false
 process_mode = 0
+process_priority = 0
 process_physics_priority = 0
+process_thread_group = 0
 physics_interpolation_mode = 0
+auto_translate_mode = 0
 editor_description = ""
 script = ExtResource("3_025xc")
 pinecil_lib_loaded = false
