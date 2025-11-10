@@ -86,6 +86,10 @@ class wiiboard_controller(Node):
 		return False
 
 
+	def disconnect_device(self):
+		pass
+
+
 	def _process(self, _delta: float) -> None:
 		if self.board is None:
 			return
@@ -119,3 +123,7 @@ class wiiboard_controller(Node):
 		x = corners[0] + corners[1] - corners[2] - corners[3]
 		y = corners[1] + corners[3] - corners[0] - corners[2]
 		return Vector2.new3(x, y)
+
+
+	def _exit_tree(self):
+		self.disconnect_device()
