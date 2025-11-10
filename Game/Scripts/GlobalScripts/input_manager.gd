@@ -36,11 +36,21 @@ signal keystroke
 func _ready() -> void:
 	OS.open_midi_inputs()
 	print("MIDI Devices: ", OS.get_connected_midi_inputs())
+	
 	var wiiboard = $WiiboardController
 	if wiiboard == null:
 		print("No WiiboardController!")
 	else:
 		wiiboard.jump.connect(_on_wiiboard_jump)
+		if not wiiboard.connect_device():
+			print("WiiBoard NOT connected")
+	
+	var pinecil = $Pinecil
+	if pinecil == null:
+		print("No Pinecil controller!")
+	else:
+		if not pinecil.connect_device():
+			print("Pinecil NOT connected")
 
 func _input(event) -> void:
 	if event.as_text() == 'Space':

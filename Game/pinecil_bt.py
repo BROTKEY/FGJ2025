@@ -36,22 +36,27 @@ class pinecil_bt(Node):
 	pynecil_client = None
 	loop = None
 
-	def _ready(self) -> None:
+	def connect_device(self) -> bool:
 		if HAS_PINECIL:
-			if self.loop is None:
-				self.loop = asyncio.new_event_loop()
-				asyncio.set_event_loop(self.loop)
-				
-			if self.pynecil_client is None:
-				device = self.loop.run_until_complete(discover(timeout=3))
-				if device is not None:
-					print(f"Found Pinecil: {device}")
-					self.pynecil_client = Pynecil(device)
-					self.pinecil_connected = True
+			try:
+				if self.loop is None:
+					self.loop = asyncio.new_event_loop()
+					asyncio.set_event_loop(self.loop)
 					
-					self.change_menu(PinecilMenus.GameJamHome)
-				else:
-					print("No Pinecil found!")
+				if self.pynecil_client is None:
+					device = self.loop.run_until_complete(discover(timeout=3))
+					if device is not None:
+						print(f"Found Pinecil: {device}")
+						self.pynecil_client = Pynecil(device)
+						self.pinecil_connected = True
+						self.change_menu(PinecilMenus.GameJamHome)
+						return True
+					else:
+						print("No Pinecil found!")
+			except:
+				print("Failed to connect to pinecil!")
+		self.pinecil_connected = False
+		return False
 
 	def get_current_temperature(self) -> int:
 		temperature = -1

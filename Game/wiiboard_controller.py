@@ -63,21 +63,27 @@ class wiiboard_controller(Node):
 	_weight_history = []
 	_jump_timeout = 0.0
 
-	if HAS_WIIBOARD:
-		def _ready(self) -> None:
-			boards = discover_wiiboards(1)
-			print(f"Found {len(boards)} wii board(s)")
-			if (boards):
-				self.board_address = boards[0]
-				print(f"Connecting to WiiBoard: {self.board_address}")
-				self.board = Wiiboard()
-				self.board.connect(self.board_address)
-				print("Connected, Starting WiiBoard Controller...")
-				self.board_thread = Thread(target=self.board.loop)
-				self.board_thread.start()
-				self.board_connected = True
-			else:
-				print("No WiiBoards found!")
+
+	def connect_device(self) -> bool:
+		if HAS_WIIBOARD:
+			try:
+				boards = discover_wiiboards(1)
+				print(f"Found {len(boards)} wii board(s)")
+				if (boards):
+					self.board_address = boards[0]
+					print(f"Connecting to WiiBoard: {self.board_address}")
+					self.board = Wiiboard()
+					self.board.connect(self.board_address)
+					print("Connected, Starting WiiBoard Controller...")
+					self.board_thread = Thread(target=self.board.loop)
+					self.board_thread.start()
+					self.board_connected = True
+					return True
+				else:
+					print("No WiiBoards found!")
+			except:
+				print("Failed to connect WiiBoard!")
+		return False
 
 
 	def _process(self, _delta: float) -> None:

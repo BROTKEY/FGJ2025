@@ -40,3 +40,5 @@ pinecil_connected = false
 
 [node name="PinecilTypes" type="Node" parent="."]
 script = ExtResource("4_asfg7")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
