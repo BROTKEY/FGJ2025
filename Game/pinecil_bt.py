@@ -57,6 +57,12 @@ class pinecil_bt(Node):
 				print("Failed to connect to pinecil!")
 		self.pinecil_connected = False
 		return False
+	
+	def disconnect_device(self):
+		if self.pynecil_client is not None:
+			self.loop.run_until_complete(self.pynecil_client.disconnect())
+			self.pynecil_client = None
+			self.pinecil_connected = False
 
 	def get_current_temperature(self) -> int:
 		temperature = -1
@@ -105,7 +111,4 @@ class pinecil_bt(Node):
 		return False
 
 	def _exit_tree(self):
-		if self.pynecil_client is not None:
-			self.loop.run_until_complete(self.pynecil_client.disconnect())
-			self.pynecil_client = None
-			self.pinecil_connected = False
+		self.disconnect_device()
