@@ -59,5 +59,4 @@ size_flags_horizontal = 3
 index = 1
 
 [node name="LivesDisplay" parent="." instance=ExtResource("2_xaufy")]
-visible = false
 position = Vector2(16, 16)

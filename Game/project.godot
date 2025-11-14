@@ -22,6 +22,11 @@ InputManager="*res://Scenes/GlobalScenes/InputManager.tscn"
 AudioManager="*res://Scenes/GlobalScenes/AudioManager.tscn"
 GameManager="*res://Scenes/GlobalScenes/GameManager.tscn"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/py4godot/plugin.cfg")
