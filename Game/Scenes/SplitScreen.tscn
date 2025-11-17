@@ -63,8 +63,8 @@ metadata/_custom_type_script = "uid://dxbxc0g07e6j6"
 
 [node name="ViewportL" type="SubViewport" parent="Viewports"]
 disable_3d = true
-size = Vector2i(1150, 650)
+size = Vector2i(1280, 720)
 
 [node name="ViewportR" type="SubViewport" parent="Viewports"]
 disable_3d = true
-size = Vector2i(1150, 650)
+size = Vector2i(1920, 1080)

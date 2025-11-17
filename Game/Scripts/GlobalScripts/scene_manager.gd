@@ -2,6 +2,8 @@ extends Node
 
 # Preloaded scenes
 const _main_menu_scene = preload("res://Scenes/MainMenu.tscn")
+const _pinecil_debug_scene = preload("res://Scenes/Debug/PinecilDebug.tscn")
+const _debug_menu_scene = preload("res://Scenes/Debug/DebugMenu.tscn")
 
 
 func get_current_scene() -> Node:
@@ -22,6 +24,11 @@ func show_main_menu() -> MainMenu:
 	var main_menu = _main_menu_scene.instantiate()
 	set_current_scene(main_menu)
 	return main_menu
+
+func show_debug_menu():
+	var debug_menu = _debug_menu_scene.instantiate()
+	set_current_scene(debug_menu)
+	return debug_menu
 
 
 func show_split_screen(left_scene: Node, right_scene: Node) -> SplitScreen:
