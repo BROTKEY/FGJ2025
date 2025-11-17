@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpjyg60xuw3s0"]
+[gd_scene load_steps=3 format=3 uid="uid://bpjyg60xuw3s0"]
 
 [ext_resource type="Script" uid="uid://7hedxny5j0g8" path="res://Scripts/Common/device_status_screen.gd" id="1_04wkt"]
-[ext_resource type="Texture2D" uid="uid://diacm8w3se0w3" path="res://Assets/Common/Pinecil.png" id="2_3e55q"]
-[ext_resource type="Texture2D" uid="uid://niluy3lhiovn" path="res://Assets/Common/WiiBoard.png" id="3_57c4v"]
-[ext_resource type="Texture2D" uid="uid://d7eyqypceste" path="res://Assets/Common/MidiKeyboard.png" id="4_c23yj"]
+[ext_resource type="PackedScene" uid="uid://c75fm8nim4bv6" path="res://Scenes/UI/DeviceButton.tscn" id="2_57c4v"]
 
 [node name="DeviceStatusScreen" type="Node2D"]
 script = ExtResource("1_04wkt")
@@ -12,14 +10,13 @@ script = ExtResource("1_04wkt")
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Pinecil" type="TextureRect" parent="IconsContainer"]
+[node name="PinecilButton" parent="IconsContainer" instance=ExtResource("2_57c4v")]
 layout_mode = 2
-texture = ExtResource("2_3e55q")
 
-[node name="WiiBoard" type="TextureRect" parent="IconsContainer"]
+[node name="WiiBoard2" parent="IconsContainer" instance=ExtResource("2_57c4v")]
 layout_mode = 2
-texture = ExtResource("3_57c4v")
+device = 5
 
-[node name="MidiKeyboard" type="TextureRect" parent="IconsContainer"]
+[node name="MidiKeyboard2" parent="IconsContainer" instance=ExtResource("2_57c4v")]
 layout_mode = 2
-texture = ExtResource("4_c23yj")
+device = 4

@@ -42,6 +42,9 @@ class wiiboard_controller(Node):
 	wiiboard_lib_loaded = HAS_WIIBOARD
 
 	jump = signal()
+	
+	signal_connected = signal()
+	signal_disconnected = signal()
 
 	## Minimum difference between min and max weight spikes required to trigger
 	## a "jump" signal
@@ -78,6 +81,7 @@ class wiiboard_controller(Node):
 					self.board_thread = Thread(target=self.board.loop)
 					self.board_thread.start()
 					self.board_connected = True
+					signal_connected.emit()
 					return True
 				else:
 					print("No WiiBoards found!")
@@ -87,14 +91,17 @@ class wiiboard_controller(Node):
 
 
 	def disconnect_device(self):
-		pass
+		if self.board is not None:
+			self.board.close()
+			signal_disconnected.emit()
+			self.board = None
+			self.board_connected = False
 
 
 	def _process(self, _delta: float) -> None:
-		if self.board is None:
-			return
-		self.weights = self.board.corners
-		self._process_jump()
+		if self.board is not None:
+			self.weights = self.board.corners
+			self._process_jump()
 
 
 	def _process_jump(self):

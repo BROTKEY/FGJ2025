@@ -22,8 +22,11 @@ const DeviceDisplayNames = {
 }
 
 const PinecilMenus = preload("res://Scripts/Common/pinecil_types.gd").PinecilMenus
-
 const pinecil_debugger = preload("res://Scenes/Debug/PinecilDebug.tscn")
+
+const icon_pinecil = preload("res://Assets/Common/Pinecil.png")
+const icon_wiiboard = preload("res://Assets/Common/WiiBoard.png")
+const icon_midi = preload("res://Assets/Common/MidiKeyboard.png")
 
 var test = 0
 signal wii_jump
@@ -32,6 +35,9 @@ signal volume_change
 var last_known_volume_value = 0
 
 signal keystroke
+
+signal device_connected(device)
+signal device_disconnected(device)
 
 func _ready() -> void:
 	OS.open_midi_inputs()
@@ -42,6 +48,8 @@ func _ready() -> void:
 		print("No WiiboardController!")
 	else:
 		wiiboard.jump.connect(_on_wiiboard_jump)
+		wiiboard.signal_connected.connect(_on_wiiboard_connected)
+		wiiboard.signal_disconnected.connect(_on_wiiboard_disconnected)
 		if not wiiboard.connect_device():
 			print("WiiBoard NOT connected")
 	
@@ -49,6 +57,8 @@ func _ready() -> void:
 	if pinecil == null:
 		print("No Pinecil controller!")
 	else:
+		pinecil.signal_connected.connect(_on_pinecil_connected)
+		pinecil.signal_disconnected.connect(_on_pinecil_disconnected)
 		if not pinecil.connect_device():
 			print("Pinecil NOT connected")
 
@@ -70,6 +80,7 @@ func _input(event) -> void:
 		if event.keycode == 80: # 'P'
 			SceneManager.set_current_scene(pinecil_debugger.instantiate())
 
+
 func _print_midi_info(midi_event):
 	print(midi_event)
 	print("Channel ", midi_event.channel)
@@ -83,6 +94,16 @@ func _print_midi_info(midi_event):
 
 func _on_wiiboard_jump() -> void:
 	wii_jump.emit()
+
+
+func connect_device(device: InputDevice):
+	match device:
+		InputDevice.MIDI_KEYBOARD:
+			OS.close_midi_inputs()
+			device_disconnected.emit(InputDevice.MIDI_KEYBOARD)
+			OS.open_midi_inputs()
+			if len(OS.get_connected_midi_inputs()) > 0:
+				device_connected.emit(InputDevice.MIDI_KEYBOARD)
 
 
 ## Check if a Device is generally available (i.e., if the required libs are installed)
@@ -119,6 +140,18 @@ func is_device_connected(device: InputDevice):
 			return false
 		_:
 			return false
+
+
+func get_device_icon(device: InputDevice):
+	match device:
+		InputDevice.PINECIL:
+			return icon_pinecil
+		InputDevice.WII_BOARD:
+			return icon_wiiboard
+		InputDevice.MIDI_KEYBOARD:
+			return icon_midi
+		_:
+			return null
 
 
 func get_soldering_iron_temprature() -> int:
@@ -163,3 +196,20 @@ func get_wii_center_of_mass() -> Vector2:
 	if board != null and board.board_connected:
 		return board.get_center_of_mass()
 	return Vector2.ZERO
+
+
+func _on_wiiboard_connected():
+	print("WiiBoard connected")
+	device_connected.emit(InputDevice.WII_BOARD)
+
+func _on_wiiboard_disconnected():
+	print("WiiBoard disconnected")
+	device_disconnected.emit(InputDevice.WII_BOARD)
+
+func _on_pinecil_connected():
+	print("Pinecil connected")
+	device_connected.emit(InputDevice.PINECIL)
+
+func _on_pinecil_disconnected():
+	print("Pinecil disconnected")
+	device_disconnected.emit(InputDevice.PINECIL)

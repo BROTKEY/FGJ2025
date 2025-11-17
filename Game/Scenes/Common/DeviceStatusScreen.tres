@@ -1,0 +1,39 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://twf1u3pdqrsa"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_114cs"]
+parameter_name = "Alpha"
+qualifier = 2
+hint = 1
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_suofq"]
+parameter_name = "Texture2DParameter"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+instance uniform float Alpha : hint_range(0.0, 1.0) = 1.0;
+
+
+
+void vertex() {
+// FloatParameter:2
+	float n_out2p0 = Alpha;
+
+
+// Output:0
+	COLOR.a = n_out2p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(920, 260)
+nodes/vertex/2/node = SubResource("VisualShaderNodeFloatParameter_114cs")
+nodes/vertex/2/position = Vector2(200, 500)
+nodes/vertex/3/node = SubResource("VisualShaderNodeTexture2DParameter_suofq")
+nodes/vertex/3/position = Vector2(60, 120)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 3)

@@ -32,6 +32,9 @@ except:
 class pinecil_bt(Node):
 	pinecil_lib_loaded = HAS_PINECIL
 	pinecil_connected = False
+	
+	signal_connected = signal()
+	signal_disconnected = signal()
 
 	pynecil_client = None
 	loop = None
@@ -50,6 +53,7 @@ class pinecil_bt(Node):
 						self.pynecil_client = Pynecil(device)
 						self.pinecil_connected = True
 						self.change_menu(PinecilMenus.GameJamHome)
+						signal_connected.emit()
 						return True
 					else:
 						print("No Pinecil found!")
@@ -61,6 +65,7 @@ class pinecil_bt(Node):
 	def disconnect_device(self):
 		if self.pynecil_client is not None:
 			self.loop.run_until_complete(self.pynecil_client.disconnect())
+			signal_disconnected.emit()
 			self.pynecil_client = None
 			self.pinecil_connected = False
 

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c75fm8nim4bv6"]
+
+[ext_resource type="Script" uid="uid://o7kesrlvory5" path="res://Scripts/Ui/device_button.gd" id="1_3ca4k"]
+[ext_resource type="Texture2D" uid="uid://diacm8w3se0w3" path="res://Assets/Common/Pinecil.png" id="1_ypaxs"]
+
+[node name="DeviceButton" type="Button"]
+offset_right = 136.0
+offset_bottom = 136.0
+icon = ExtResource("1_ypaxs")
+icon_alignment = 1
+script = ExtResource("1_3ca4k")
+device = 3
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
